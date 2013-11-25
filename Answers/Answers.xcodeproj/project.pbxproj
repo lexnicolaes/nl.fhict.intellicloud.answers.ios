@@ -68,7 +68,6 @@
 		C682437D18429214005AC9F2 /* Source.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Source.m; sourceTree = "<group>"; };
 		C6CB6D67183E08FA00D34039 /* QuestionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsTableViewController.h; sourceTree = "<group>"; };
 		C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsTableViewController.m; sourceTree = "<group>"; };
-		C6CB6D6A183E0D6600D34039 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C6CB6D6B183E0F3200D34039 /* WebserviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceManager.h; sourceTree = "<group>"; };
 		C6CB6D6C183E0F3200D34039 /* WebserviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceManager.m; sourceTree = "<group>"; };
 		C6CB6D71183E11C700D34039 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -147,6 +146,7 @@
 		74D4772B183CE9B300D33FC5 /* Answers */ = {
 			isa = PBXGroup;
 			children = (
+				C6C4FBB918437090005DAA44 /* Categories */,
 				C6CB6D6E183E10E700D34039 /* Models */,
 				C6CB6D6F183E10F300D34039 /* Views */,
 				C6CB6D70183E110000D34039 /* Controllers */,
@@ -154,15 +154,8 @@
 				74D47735183CE9B300D33FC5 /* AppDelegate.m */,
 				74D47737183CE9B300D33FC5 /* Images.xcassets */,
 				74D4772C183CE9B300D33FC5 /* Supporting Files */,
-				C6CB6D6A183E0D6600D34039 /* Common.h */,
 				C6CB6D6B183E0F3200D34039 /* WebserviceManager.h */,
 				C6CB6D6C183E0F3200D34039 /* WebserviceManager.m */,
-				C6CB6D7A183E382200D34039 /* UIColor+IntelliCloudStyle.h */,
-				C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */,
-				C6CB6D7D183E397F00D34039 /* MainViewController.h */,
-				C6CB6D7E183E397F00D34039 /* MainViewController.m */,
-				C62C26AA184363160048399B /* MainTabBarController.h */,
-				C62C26AB184363160048399B /* MainTabBarController.m */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
@@ -203,6 +196,15 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		C6C4FBB918437090005DAA44 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C6CB6D7A183E382200D34039 /* UIColor+IntelliCloudStyle.h */,
+				C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		C6CB6D6E183E10E700D34039 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +230,10 @@
 		C6CB6D70183E110000D34039 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C6CB6D7D183E397F00D34039 /* MainViewController.h */,
+				C6CB6D7E183E397F00D34039 /* MainViewController.m */,
+				C62C26AA184363160048399B /* MainTabBarController.h */,
+				C62C26AB184363160048399B /* MainTabBarController.m */,
 				C6CB6D67183E08FA00D34039 /* QuestionsTableViewController.h */,
 				C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */,
 				C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */,
