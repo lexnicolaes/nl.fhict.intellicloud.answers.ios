@@ -20,12 +20,39 @@
     
     self.questionID = [[attributes valueForKeyPath:@"Id"] integerValue];
     self.content = [attributes valueForKey:@"Content"];
-    // todo: parse inner object User for User
-    // todo: parse inner object User for Answerer
+    self.questionUser = [[User alloc] initWithAttributes:[attributes valueForKey:@"User"]];
+    self.answerUser = [[User alloc] initWithAttributes:[attributes valueForKey:@"Answerer"]];
     self.questionState = [[attributes valueForKey:@"QuestionState"] integerValue];
-    // todo: parse inner object SourceDefinition for SourceType
+    self.sourceType = [[SourceDefinition alloc] initWithAttributes:[attributes valueForKey:@"SourceType"]];
     
     return self;
+}
+
++ (NSURLSessionDataTask *)getQuestionsWithBlock:(void (^)(NSArray *questions, NSError *error))block
+{
+    return [[WebserviceManager sharedClient] GET:@"getQuestions/1"
+                                      parameters:nil
+    success:^(NSURLSessionDataTask __unused *task, id JSON)
+    {
+        NSMutableArray *mutableQuestions = [NSMutableArray arrayWithCapacity:[JSON count]];
+        for (NSDictionary *attributes in JSON)
+        {
+            Question *question = [[Question alloc] initWithAttributes:attributes];
+            question.content = @"To be or not to be?";
+            [mutableQuestions addObject:question];
+        }
+        
+        if (block)
+        {
+            block([NSArray arrayWithArray:mutableQuestions], nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error)
+    {
+        if (block)
+        {
+            block([NSArray array], error);
+        }
+    }];
 }
 
 @end

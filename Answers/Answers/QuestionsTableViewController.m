@@ -25,21 +25,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // DEBUG
-    // Add some dummy questions
-    _questions = [[NSMutableArray alloc] init];
-    
-    Question *q1 = [[Question alloc] init];
-    q1.questionID = 1;
-    q1.content = @"foobars!";
-    [_questions addObject:q1];
-    
-    Question *q2 = [[Question alloc] init];
-    q2.questionID = 1;
-    q2.content = @"Testtest!";
-    [_questions addObject:q2];
-    //DEBUG
     
     // Set table seperator inset to line up with content text
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0.0f, 50.0f, 0.0f, 0.0f)];
@@ -55,6 +40,9 @@
     
     // Set title
     self.title = NSLocalizedString(@"Questions", nil);
+    
+    // Load questions for view
+    [self reload:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,36 +51,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ * Loads data from the webservice and reloads the tableview
+ */
 - (void)reload:(__unused id)sender
 {
-    NSLog(@"Nog niks...");
+    [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error) {
+        if (!error)
+        {
+            self.questions = (NSMutableArray *)questions;
+            [self.tableView reloadData];
+        }
+    }];
     
-    Question *q = [[Question alloc] init];
-    q.questionID = 3;
-    q.content = @"Woopwhoop?";
-    //[_questions addObject:q];
-    [_questions insertObject:q atIndex:0];
-    
-    double delayInSeconds = 0.5;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.refreshControl endRefreshing];
-        
-        // Animated reloaddata http://stackoverflow.com/questions/14576921/uitableview-reloaddata-with-animation
-        [self.tableView beginUpdates];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
-    });
+    [self.refreshControl endRefreshing];
 }
 
 #pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 1;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -104,19 +79,18 @@
     static NSString *CellIdentifier = @"QuestionCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    //cell.textLabel.text = @"Hoe installeer ik Windows 7?";
-    //cell.detailTextLabel.text = @"3 hours ago by Bram Kersten";
+    Question *question = (Question *)[_questions objectAtIndex:indexPath.row];
     
     UILabel *authorLabel = (UILabel *)[cell.contentView viewWithTag:100];
-    authorLabel.text = @"Lex Nicolaes";
+    NSString *infix = question.questionUser.infix ? [NSString stringWithFormat:@"%@ ", question.questionUser.infix] : nil;
+    authorLabel.text = [NSString stringWithFormat:@"%@ %@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
     
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
     timeLabel.text = @"just now";
     
     UILabel *questionLabel = (UILabel *)[cell.contentView viewWithTag:130];
-    Question *foo = (Question *)[_questions objectAtIndex:indexPath.row];
-    questionLabel.text = foo.content;
+    
+    questionLabel.text = question.content;
     
     return cell;
 }
@@ -125,56 +99,5 @@
 {
     return 82.0f;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

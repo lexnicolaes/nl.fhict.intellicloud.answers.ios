@@ -10,6 +10,8 @@
 #import "User.h"
 #import "SourceDefinition.h"
 
+#import "WebserviceManager.h"
+
 /**
  * An enumeration indicating the state of a Question.
  */
@@ -74,5 +76,12 @@ typedef NS_ENUM(NSInteger, QuestionState)
  * @param attributes to be parsed
  */
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;
+
+/**
+ * Initialized a User with attributes from a (JSON) dictionary.
+ * @param attributes to be parsed
+ * @param attributes to be parsed
+ */
++ (NSURLSessionDataTask *)getQuestionsWithBlock:(void (^)(NSArray *questions, NSError *error))block;
 
 @end
