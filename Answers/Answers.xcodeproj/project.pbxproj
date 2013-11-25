@@ -20,11 +20,16 @@
 		74F57E42183CEB810028C197 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E44183CEB810028C197 /* Localizable.strings */; };
 		74F57E47183CEBB50028C197 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E49183CEBB50028C197 /* iPhoneStoryboard.storyboard */; };
 		9FC8445E1195414B8753E2DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CF620837114A219F247EDB /* libPods.a */; };
+		C62C26AC184363160048399B /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62C26AB184363160048399B /* MainTabBarController.m */; };
+		C682437E18429214005AC9F2 /* Source.m in Sources */ = {isa = PBXBuildFile; fileRef = C682437D18429214005AC9F2 /* Source.m */; };
 		C6CB6D69183E08FA00D34039 /* QuestionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */; };
 		C6CB6D6D183E0F3200D34039 /* WebserviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D6C183E0F3200D34039 /* WebserviceManager.m */; };
 		C6CB6D73183E11C700D34039 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D72183E11C700D34039 /* Question.m */; };
 		C6CB6D76183E1B2400D34039 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D75183E1B2400D34039 /* User.m */; };
 		C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D78183E1B4300D34039 /* SourceDefinition.m */; };
+		C6CB6D7C183E382200D34039 /* UIColor+IntelliCloudStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */; };
+		C6CB6D7F183E397F00D34039 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D7E183E397F00D34039 /* MainViewController.m */; };
+		C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,10 @@
 		74F57E48183CEBB50028C197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
 		74F57E4B183CEBBC0028C197 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/iPhoneStoryboard.strings; sourceTree = "<group>"; };
 		84E4AB3E3B5D42FAB84CB280 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C62C26AA184363160048399B /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		C62C26AB184363160048399B /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		C682437C18429214005AC9F2 /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
+		C682437D18429214005AC9F2 /* Source.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Source.m; sourceTree = "<group>"; };
 		C6CB6D67183E08FA00D34039 /* QuestionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsTableViewController.h; sourceTree = "<group>"; };
 		C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsTableViewController.m; sourceTree = "<group>"; };
 		C6CB6D6A183E0D6600D34039 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -68,6 +77,12 @@
 		C6CB6D75183E1B2400D34039 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C6CB6D77183E1B4300D34039 /* SourceDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceDefinition.h; sourceTree = "<group>"; };
 		C6CB6D78183E1B4300D34039 /* SourceDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceDefinition.m; sourceTree = "<group>"; };
+		C6CB6D7A183E382200D34039 /* UIColor+IntelliCloudStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+IntelliCloudStyle.h"; sourceTree = "<group>"; };
+		C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+IntelliCloudStyle.m"; sourceTree = "<group>"; };
+		C6CB6D7D183E397F00D34039 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C6CB6D7E183E397F00D34039 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsTableViewController.h; sourceTree = "<group>"; };
+		C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsTableViewController.m; sourceTree = "<group>"; };
 		F7CF620837114A219F247EDB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,6 +157,12 @@
 				C6CB6D6A183E0D6600D34039 /* Common.h */,
 				C6CB6D6B183E0F3200D34039 /* WebserviceManager.h */,
 				C6CB6D6C183E0F3200D34039 /* WebserviceManager.m */,
+				C6CB6D7A183E382200D34039 /* UIColor+IntelliCloudStyle.h */,
+				C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */,
+				C6CB6D7D183E397F00D34039 /* MainViewController.h */,
+				C6CB6D7E183E397F00D34039 /* MainViewController.m */,
+				C62C26AA184363160048399B /* MainTabBarController.h */,
+				C62C26AB184363160048399B /* MainTabBarController.m */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
@@ -191,6 +212,8 @@
 				C6CB6D75183E1B2400D34039 /* User.m */,
 				C6CB6D77183E1B4300D34039 /* SourceDefinition.h */,
 				C6CB6D78183E1B4300D34039 /* SourceDefinition.m */,
+				C682437C18429214005AC9F2 /* Source.h */,
+				C682437D18429214005AC9F2 /* Source.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -207,6 +230,8 @@
 			children = (
 				C6CB6D67183E08FA00D34039 /* QuestionsTableViewController.h */,
 				C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */,
+				C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */,
+				C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -260,6 +285,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = IntelliCloud;
 				TargetAttributes = {
+					74D47721183CE9B300D33FC5 = {
+						DevelopmentTeam = CU3Z5M9BXQ;
+					};
 					74D4773C183CE9B300D33FC5 = {
 						TestTargetID = 74D47721183CE9B300D33FC5;
 					};
@@ -343,12 +371,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CB6D6D183E0F3200D34039 /* WebserviceManager.m in Sources */,
+				C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */,
+				C62C26AC184363160048399B /* MainTabBarController.m in Sources */,
 				74D47736183CE9B300D33FC5 /* AppDelegate.m in Sources */,
 				C6CB6D76183E1B2400D34039 /* User.m in Sources */,
 				C6CB6D73183E11C700D34039 /* Question.m in Sources */,
+				C6CB6D7F183E397F00D34039 /* MainViewController.m in Sources */,
+				C682437E18429214005AC9F2 /* Source.m in Sources */,
 				74D47732183CE9B300D33FC5 /* main.m in Sources */,
 				C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */,
 				C6CB6D69183E08FA00D34039 /* QuestionsTableViewController.m in Sources */,
+				C6CB6D7C183E382200D34039 /* UIColor+IntelliCloudStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,10 +504,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Answers/Answers-Prefix.pch";
 				INFOPLIST_FILE = "Answers/Answers-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -485,10 +521,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Answers/Answers-Prefix.pch";
 				INFOPLIST_FILE = "Answers/Answers-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -22,46 +22,52 @@ typedef NS_ENUM(NSInteger, QuestionState)
 };
 
 /**
- * Model for holding a Question retreived from the Webservice
+ * Model for representing a Question retreived from the Webservice
  */
 @interface Question : NSObject
 
 /**
  * @property questionID
- * @brief Gets or sets the unique identifier of the question.
+ * @brief Gets the unique identifier of the question.
  */
 @property (nonatomic, assign) NSInteger questionID;
 
 /**
  * @property content
- * @brief Gets or sets the content of the question. The content contains question asked by the User.
+ * @brief Gets the content of the question. The content contains question asked by the User.
  */
 @property (nonatomic, strong) NSString * content;
 
 /**
  * @property questionUser
- * @brief Gets or sets the user that aksed the question.
+ * @brief Gets the user that aksed the question.
  */
 @property (nonatomic, strong) User * questionUser;
 
 /**
  * @property answerUser
- * @brief Gets or sets the user that is going to answer the question.
+ * @brief Gets the user that is going to answer the question.
  */
 @property (nonatomic, strong) User * answerUser;
 
 /**
  * @property questionState
- * @brief Gets or sets the state of the question.
+ * @brief Gets the state of the question.
  */
 @property (nonatomic, assign) QuestionState questionState;
 
 /**
  * @property sourceType
- * @brief Gets or sets the type of source that is used to return the answer to the question.
+ * @brief Gets the type of source that is used to return the answer to the question.
  * The actual source can be found using the Question.User field.
  */
 @property (nonatomic, strong) SourceDefinition *sourceType;
+
+/**
+ * @property creayionTime
+ * @brief Gets the creation date and time of the question.
+ */
+@property (nonatomic, strong) NSDate *creationTime;
 
 /**
  * Initialized a User with attributes from a (JSON) dictionary.

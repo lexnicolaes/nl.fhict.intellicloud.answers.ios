@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FormatterKit/TTTTimeIntervalFormatter.h>
+#import <FormatterKit/TTTColorFormatter.h>
+#import "Question.h"
 
 @interface QuestionsTableViewController : UITableViewController
+
+@property (readwrite, nonatomic, strong) NSMutableArray *questions;
 
 @end

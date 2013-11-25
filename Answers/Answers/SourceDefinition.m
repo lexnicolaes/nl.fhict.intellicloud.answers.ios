@@ -10,4 +10,18 @@
 
 @implementation SourceDefinition
 
+- (instancetype)initWithAttributes:(NSDictionary *)attributes
+{
+    self = [super init];
+    if (!self)
+    {
+        return nil;
+    }
+    
+    //self.userID = [[attributes valueForKeyPath:@"Id"] integerValue];
+    //self.username = [attributes valueForKey:@"Username"];
+    
+    return self;
+}
+
 @end

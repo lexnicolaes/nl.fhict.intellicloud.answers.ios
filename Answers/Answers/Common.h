@@ -11,8 +11,6 @@
 
 /**
  * Base URL for the webservice, used by the networking class
- *
- * @author lexnicolaes
  */
 static NSString * const WebserviceManagerBaseURLString = @"http://81.204.121.229/IntelliCloudService/IntelliCloud.svc/";
 

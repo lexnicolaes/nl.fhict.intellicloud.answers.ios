@@ -20,10 +20,10 @@
     
     self.questionID = [[attributes valueForKeyPath:@"Id"] integerValue];
     self.content = [attributes valueForKey:@"Content"];
-    // todo: parse inner object User for questionUser
-    // todo: parse inner object User for questionUser
+    // todo: parse inner object User for User
+    // todo: parse inner object User for Answerer
     self.questionState = [[attributes valueForKey:@"QuestionState"] integerValue];
-    // todo: parse inner object SourceDefinition for sourceType
+    // todo: parse inner object SourceDefinition for SourceType
     
     return self;
 }

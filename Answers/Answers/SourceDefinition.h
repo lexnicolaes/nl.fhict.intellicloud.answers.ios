@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Model representing a SourceDefinition retreived from the Webservice
+ */
 @interface SourceDefinition : NSObject
+
+/**
+ * Initialized a User with attributes from a (JSON) dictionary.
+ * @param attributes to be parsed
+ */
+- (instancetype)initWithAttributes:(NSDictionary *)attributes;
 
 @end
