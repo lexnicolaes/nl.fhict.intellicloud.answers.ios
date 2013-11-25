@@ -17,10 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
-    NSLog(@"Wooooooo");
-    
+    // Localization for the tab titles
     [[self.viewControllers objectAtIndex:0] setTitle:NSLocalizedString(@"Questions", nil)];
     [[self.viewControllers objectAtIndex:1] setTitle:NSLocalizedString(@"Reviews", nil)];
 }
