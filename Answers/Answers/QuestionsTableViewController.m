@@ -39,6 +39,9 @@
     // Set title
     self.title = NSLocalizedString(@"Questions", nil);
     
+    // Static height for tableviewcell, see storyboard
+    self.tableView.rowHeight = QuestionTableCellHeight;
+    
     // Load questions for view
     [self reload:nil];
 }
@@ -104,11 +107,11 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Static height for tableviewcell, see storyboard
     return 82.0f;
-}
+}*/
 
 #pragma mark - Navigation
 

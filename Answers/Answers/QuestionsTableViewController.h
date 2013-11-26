@@ -12,10 +12,14 @@
 #import "Question.h"
 
 /**
+ * TableViewCell height for question
+ */
+static CGFloat const QuestionTableCellHeight = 82.0f;
+
+/**
  * TableView for holding questions
  */
 @interface QuestionsTableViewController : UITableViewController
-
 
 /**
  * @property questions
