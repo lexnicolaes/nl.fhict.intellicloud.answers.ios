@@ -30,7 +30,6 @@
     
     // NavigationBar background color
     self.navigationBar.barTintColor = [UIColor navigationBarTintColor];
-    self.navigationBar.translucent = NO;
     
     // NavigationBar label text color
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
