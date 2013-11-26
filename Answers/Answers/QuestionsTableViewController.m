@@ -49,8 +49,9 @@
 /**
  * @brief Loads data from the webservice and reloads the tableview
  */
-- (void)reload:(__unused id)sender
+- (bool)reload:(__unused id)sender
 {
+    __block bool state = NO;
     // retrieve data from webservice
     [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
     {
@@ -61,10 +62,29 @@
             
             // reload the table
             [self.tableView reloadData];
+            
+            state = YES;
         }
     }];
     
     [self.refreshControl endRefreshing];
+    
+    return state;
+}
+
+/**
+ * @brief Reloads data for background fetch
+ */
+- (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
+{
+    UIBackgroundFetchResult result = UIBackgroundFetchResultFailed;
+    
+    if ([self reload:nil])
+    {
+        result = UIBackgroundFetchResultNewData;
+    }
+    
+    completionHandler(result);
 }
 
 #pragma mark - Table view data source
