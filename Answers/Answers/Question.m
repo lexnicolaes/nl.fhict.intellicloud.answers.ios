@@ -8,8 +8,15 @@
 
 #import "Question.h"
 
+/**
+ * Model for representing a Question retreived from the Webservice
+ */
 @implementation Question
 
+/**
+ * Initialized a User with attributes from a (JSON) dictionary.
+ * @param attributes to be parsed
+ */
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
 {
     self = [super init];
@@ -28,6 +35,11 @@
     return self;
 }
 
+/**
+ * Initialized a User with attributes from a (JSON) dictionary.
+ * @param attributes to be parsed
+ * @param attributes to be parsed
+ */
 + (NSURLSessionDataTask *)getQuestionsWithBlock:(void (^)(NSArray *questions, NSError *error))block
 {
     return [[WebserviceManager sharedClient] GET:@"getQuestions/1"

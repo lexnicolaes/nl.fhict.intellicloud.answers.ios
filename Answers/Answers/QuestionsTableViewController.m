@@ -12,16 +12,14 @@
 
 @end
 
+/**
+ * TableView for holding questions
+ */
 @implementation QuestionsTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
-
+/*
+ * @brief set formatting of table on VC load
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,21 +43,20 @@
     [self reload:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /**
- * Loads data from the webservice and reloads the tableview
+ * @brief Loads data from the webservice and reloads the tableview
  */
 - (void)reload:(__unused id)sender
 {
-    [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error) {
+    // retrieve data from webservice
+    [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
+    {
         if (!error)
         {
+            // Set questions array with retrieved questions
             self.questions = (NSMutableArray *)questions;
+            
+            // reload the table
             [self.tableView reloadData];
         }
     }];
@@ -71,6 +68,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // Count nr of items in questions array
     return (NSInteger)[_questions count];
 }
 
@@ -79,17 +77,28 @@
     static NSString *CellIdentifier = @"QuestionCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    // Get question for this row
     Question *question = (Question *)[_questions objectAtIndex:indexPath.row];
     
+    // Get author label from storyboard
     UILabel *authorLabel = (UILabel *)[cell.contentView viewWithTag:100];
+    
+    // Prepare infix, add suffix space when we have a infix
     NSString *infix = question.questionUser.infix ? [NSString stringWithFormat:@"%@ ", question.questionUser.infix] : nil;
+    
+    // Set author label
     authorLabel.text = [NSString stringWithFormat:@"%@ %@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
     
+    // Get time label from storyboard
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
+    
+    // Set time label (static for now)
     timeLabel.text = @"just now";
     
+    // Get question label from storyboard
     UILabel *questionLabel = (UILabel *)[cell.contentView viewWithTag:130];
     
+    // Set question label
     questionLabel.text = question.content;
     
     return cell;
@@ -97,6 +106,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Static height for tableviewcell, see storyboard
     return 82.0f;
 }
 

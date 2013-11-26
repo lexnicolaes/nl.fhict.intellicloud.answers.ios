@@ -8,8 +8,14 @@
 
 #import "WebserviceManager.h"
 
+/**
+ * Class for managing communication with the WebService
+ */
 @implementation WebserviceManager
 
+/**
+ * @brief Get singleton instance of WebserviceManager
+ */
 + (instancetype)sharedClient
 {
     static WebserviceManager *_sharedClient = nil;

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * ViewController for holding a TableView child
+ * This VC handles most styling of it and it's subviews.
+ */
 @interface MainViewController : UINavigationController
 
 @end

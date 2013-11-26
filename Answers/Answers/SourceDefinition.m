@@ -8,8 +8,17 @@
 
 #import "SourceDefinition.h"
 
+/**
+ * Model representing a SourceDefinition retreived from the Webservice
+ * A SourceDefinition defines a Source. A Source can be a account for some service,
+ * like facebook, twitter or email.
+ */
 @implementation SourceDefinition
 
+/**
+ * Initialized a User with attributes from a (JSON) dictionary.
+ * @param attributes to be parsed
+ */
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
 {
     self = [super init];
@@ -18,8 +27,7 @@
         return nil;
     }
     
-    //self.userID = [[attributes valueForKeyPath:@"Id"] integerValue];
-    //self.username = [attributes valueForKey:@"Username"];
+    //todo: implement parsing
     
     return self;
 }

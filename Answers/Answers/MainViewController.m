@@ -12,17 +12,15 @@
 
 @end
 
+/**
+ * ViewController for holding a TableView child
+ * This VC handles most styling of it and it's subviews.
+ */
 @implementation MainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
+/**
+ * @brief Set styling for VC on load
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,12 +38,6 @@
     
     // TabBar tint color
     self.tabBarController.tabBar.tintColor = [UIColor tabBarTintColor];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

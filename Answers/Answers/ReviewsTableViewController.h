@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <FormatterKit/TTTColorFormatter.h>
 
+/**
+ * TableView for holding reviews
+ */
 @interface ReviewsTableViewController : UITableViewController
 
 @end

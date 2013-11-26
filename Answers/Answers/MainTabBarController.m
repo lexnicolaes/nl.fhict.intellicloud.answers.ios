@@ -12,8 +12,15 @@
 
 @end
 
+/**
+ * TabBar for initial view.
+ * Sets localization for tabs on app load.
+ */
 @implementation MainTabBarController
 
+/**
+ * @brief Set localization on VC load
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];

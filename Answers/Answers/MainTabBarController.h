@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * TabBar for initial view.
+ * Sets localization for tabs on app load.
+ */
 @interface MainTabBarController : UITabBarController
 
 @end

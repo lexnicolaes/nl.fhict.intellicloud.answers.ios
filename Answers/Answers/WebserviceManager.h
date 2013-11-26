@@ -14,8 +14,14 @@
  */
 static NSString * const WebserviceManagerBaseURLString = @"http://81.204.121.229/IntelliCloudService/IntelliCloudService.svc/";
 
+/**
+ * Class for managing communication with the WebService
+ */
 @interface WebserviceManager : AFHTTPSessionManager
 
+/**
+ * @brief Get singleton instance of WebserviceManager
+ */
 + (instancetype)sharedClient;
 
 @end

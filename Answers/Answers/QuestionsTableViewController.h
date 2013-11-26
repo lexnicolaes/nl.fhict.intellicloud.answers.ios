@@ -11,8 +11,21 @@
 #import <FormatterKit/TTTColorFormatter.h>
 #import "Question.h"
 
+/**
+ * TableView for holding questions
+ */
 @interface QuestionsTableViewController : UITableViewController
 
+
+/**
+ * @property questions
+ * @brief Holds questions to be shown in the TableView, values are loaded from WS
+ */
 @property (readwrite, nonatomic, strong) NSMutableArray *questions;
+
+/**
+ * @brief Loads data from the webservice and reloads the tableview
+ */
+- (void)reload:(__unused id)sender;
 
 @end
