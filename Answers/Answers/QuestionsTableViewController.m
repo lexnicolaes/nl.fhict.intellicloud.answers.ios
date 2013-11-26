@@ -121,7 +121,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    NSLog(@"selected: %d", [self.tableView indexPathForSelectedRow].row);
+    NSLog(@"selected: %ld", (long)[self.tableView indexPathForSelectedRow].row);
 }
 
 @end
