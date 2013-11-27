@@ -51,7 +51,9 @@
  */
 - (bool)reload:(__unused id)sender
 {
+    // return state succeesed/failed
     __block bool state = NO;
+    
     // retrieve data from webservice
     [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
     {
