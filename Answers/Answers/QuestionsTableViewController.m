@@ -39,6 +39,9 @@
     // Set title
     self.title = NSLocalizedString(@"Questions", nil);
     
+    // Static height for tableviewcell, see storyboard
+    self.tableView.rowHeight = QuestionTableCellHeight;
+    
     // Load questions for view
     [self reload:nil];
 }
@@ -46,8 +49,11 @@
 /**
  * @brief Loads data from the webservice and reloads the tableview
  */
-- (void)reload:(__unused id)sender
+- (bool)reload:(__unused id)sender
 {
+    // return state succeesed/failed
+    __block bool state = NO;
+    
     // retrieve data from webservice
     [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
     {
@@ -58,10 +64,29 @@
             
             // reload the table
             [self.tableView reloadData];
+            
+            state = YES;
         }
     }];
     
     [self.refreshControl endRefreshing];
+    
+    return state;
+}
+
+/**
+ * @brief Reloads data for background fetch
+ */
+- (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
+{
+    UIBackgroundFetchResult result = UIBackgroundFetchResultFailed;
+    
+    if ([self reload:nil])
+    {
+        result = UIBackgroundFetchResultNewData;
+    }
+    
+    completionHandler(result);
 }
 
 #pragma mark - Table view data source
@@ -104,11 +129,11 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Static height for tableviewcell, see storyboard
     return 82.0f;
-}
+}*/
 
 #pragma mark - Navigation
 
@@ -118,7 +143,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    NSLog(@"selected: %d", [self.tableView indexPathForSelectedRow].row);
+    NSLog(@"selected: %ld", (long)[self.tableView indexPathForSelectedRow].row);
 }
 
 @end
