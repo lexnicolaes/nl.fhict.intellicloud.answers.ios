@@ -12,6 +12,6 @@
  * ViewController for holding a TableView child
  * This VC handles most styling of it and it's subviews.
  */
-@interface MainViewController : UINavigationController
+@interface MainNavigationController : UINavigationController
 
 @end

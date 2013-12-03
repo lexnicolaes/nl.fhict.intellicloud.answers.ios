@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 IntelliCloud. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "MainNavigationController.h"
 
-@interface MainViewController ()
+@interface MainNavigationController ()
 
 @end
 
@@ -16,7 +16,7 @@
  * ViewController for holding a TableView child
  * This VC handles most styling of it and it's subviews.
  */
-@implementation MainViewController
+@implementation MainNavigationController
 
 /**
  * @brief Set styling for VC on load
