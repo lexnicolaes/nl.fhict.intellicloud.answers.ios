@@ -16,4 +16,5 @@
 
     // Load color category for global styling
     #import "UIColor+IntelliCloudStyle.h"
+
 #endif

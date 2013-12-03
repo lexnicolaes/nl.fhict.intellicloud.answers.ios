@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RESideMenu/RESideMenu.h>
 
-@interface MenuViewController : UITableViewController
+@interface MenuViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
 
-/**
- * Handler for topvc to menu segue
- */
-- (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
+@property (nonatomic, retain) NSArray *menuItems;
 
 @end

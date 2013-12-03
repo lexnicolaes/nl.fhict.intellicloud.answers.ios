@@ -20,7 +20,7 @@
 		74F57E42183CEB810028C197 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E44183CEB810028C197 /* Localizable.strings */; };
 		74F57E47183CEBB50028C197 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E49183CEBB50028C197 /* iPhoneStoryboard.storyboard */; };
 		9FC8445E1195414B8753E2DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CF620837114A219F247EDB /* libPods.a */; };
-		C62C26AC184363160048399B /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62C26AB184363160048399B /* MainTabBarController.m */; };
+		C608247E184D2A040060990A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C608247D184D2A040060990A /* RootViewController.m */; };
 		C6581CAA184CA20E00600009 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6581CA9184CA20E00600009 /* MenuViewController.m */; };
 		C682437E18429214005AC9F2 /* Source.m in Sources */ = {isa = PBXBuildFile; fileRef = C682437D18429214005AC9F2 /* Source.m */; };
 		C6CB6D69183E08FA00D34039 /* QuestionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */; };
@@ -29,7 +29,9 @@
 		C6CB6D76183E1B2400D34039 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D75183E1B2400D34039 /* User.m */; };
 		C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D78183E1B4300D34039 /* SourceDefinition.m */; };
 		C6CB6D7C183E382200D34039 /* UIColor+IntelliCloudStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */; };
-		C6CB6D7F183E397F00D34039 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D7E183E397F00D34039 /* MainViewController.m */; };
+		C6CB6D7F183E397F00D34039 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6D7E183E397F00D34039 /* MainNavigationController.m */; };
+		C6CE2B5B184DEB1C00C27EB4 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */; };
+		C6CE2B5E184DEBE900C27EB4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */; };
 		C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -63,8 +65,8 @@
 		74F57E48183CEBB50028C197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
 		74F57E4B183CEBBC0028C197 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/iPhoneStoryboard.strings; sourceTree = "<group>"; };
 		84E4AB3E3B5D42FAB84CB280 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		C62C26AA184363160048399B /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
-		C62C26AB184363160048399B /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		C608247C184D2A040060990A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		C608247D184D2A040060990A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		C6581CA8184CA20E00600009 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		C6581CA9184CA20E00600009 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		C682437C18429214005AC9F2 /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
@@ -81,8 +83,12 @@
 		C6CB6D78183E1B4300D34039 /* SourceDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceDefinition.m; sourceTree = "<group>"; };
 		C6CB6D7A183E382200D34039 /* UIColor+IntelliCloudStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+IntelliCloudStyle.h"; sourceTree = "<group>"; };
 		C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+IntelliCloudStyle.m"; sourceTree = "<group>"; };
-		C6CB6D7D183E397F00D34039 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		C6CB6D7E183E397F00D34039 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C6CB6D7D183E397F00D34039 /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
+		C6CB6D7E183E397F00D34039 /* MainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
+		C6CE2B59184DEB1C00C27EB4 /* InboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxViewController.h; sourceTree = "<group>"; };
+		C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxViewController.m; sourceTree = "<group>"; };
+		C6CE2B5C184DEBE900C27EB4 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsTableViewController.h; sourceTree = "<group>"; };
 		C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsTableViewController.m; sourceTree = "<group>"; };
 		F7CF620837114A219F247EDB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,8 +165,6 @@
 				74D4772C183CE9B300D33FC5 /* Supporting Files */,
 				C6CB6D6B183E0F3200D34039 /* WebserviceManager.h */,
 				C6CB6D6C183E0F3200D34039 /* WebserviceManager.m */,
-				C6581CA8184CA20E00600009 /* MenuViewController.h */,
-				C6581CA9184CA20E00600009 /* MenuViewController.m */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
@@ -201,6 +205,15 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		C608247B184D29D30060990A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C6CE2B5C184DEBE900C27EB4 /* BaseViewController.h */,
+				C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		C6C4FBB918437090005DAA44 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,16 +248,29 @@
 		C6CB6D70183E110000D34039 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C6CB6D7D183E397F00D34039 /* MainViewController.h */,
-				C6CB6D7E183E397F00D34039 /* MainViewController.m */,
-				C62C26AA184363160048399B /* MainTabBarController.h */,
-				C62C26AB184363160048399B /* MainTabBarController.m */,
+				C6CE2B51184DE42100C27EB4 /* Menu */,
+				C608247B184D29D30060990A /* Base */,
 				C6CB6D67183E08FA00D34039 /* QuestionsTableViewController.h */,
 				C6CB6D68183E08FA00D34039 /* QuestionsTableViewController.m */,
 				C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */,
 				C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */,
+				C6CE2B59184DEB1C00C27EB4 /* InboxViewController.h */,
+				C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C6CE2B51184DE42100C27EB4 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C6581CA8184CA20E00600009 /* MenuViewController.h */,
+				C6581CA9184CA20E00600009 /* MenuViewController.m */,
+				C6CB6D7D183E397F00D34039 /* MainNavigationController.h */,
+				C6CB6D7E183E397F00D34039 /* MainNavigationController.m */,
+				C608247C184D2A040060990A /* RootViewController.h */,
+				C608247D184D2A040060990A /* RootViewController.m */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,12 +414,14 @@
 			files = (
 				C6CB6D6D183E0F3200D34039 /* WebserviceManager.m in Sources */,
 				C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */,
-				C62C26AC184363160048399B /* MainTabBarController.m in Sources */,
+				C6CE2B5B184DEB1C00C27EB4 /* InboxViewController.m in Sources */,
 				74D47736183CE9B300D33FC5 /* AppDelegate.m in Sources */,
 				C6581CAA184CA20E00600009 /* MenuViewController.m in Sources */,
 				C6CB6D76183E1B2400D34039 /* User.m in Sources */,
 				C6CB6D73183E11C700D34039 /* Question.m in Sources */,
-				C6CB6D7F183E397F00D34039 /* MainViewController.m in Sources */,
+				C6CB6D7F183E397F00D34039 /* MainNavigationController.m in Sources */,
+				C6CE2B5E184DEBE900C27EB4 /* BaseViewController.m in Sources */,
+				C608247E184D2A040060990A /* RootViewController.m in Sources */,
 				C682437E18429214005AC9F2 /* Source.m in Sources */,
 				74D47732183CE9B300D33FC5 /* main.m in Sources */,
 				C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */,
