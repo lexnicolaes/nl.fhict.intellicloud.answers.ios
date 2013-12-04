@@ -33,6 +33,7 @@
 		C6CE2B5B184DEB1C00C27EB4 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */; };
 		C6CE2B5E184DEBE900C27EB4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */; };
 		C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */; };
+		DAE844F6184F4F2600BCF896 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE844F5184F4F2600BCF896 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsTableViewController.h; sourceTree = "<group>"; };
 		C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsTableViewController.m; sourceTree = "<group>"; };
+		DAE844F4184F4F2600BCF896 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		DAE844F5184F4F2600BCF896 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F7CF620837114A219F247EDB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -256,6 +259,8 @@
 				C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */,
 				C6CE2B59184DEB1C00C27EB4 /* InboxViewController.h */,
 				C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */,
+				DAE844F4184F4F2600BCF896 /* LoginViewController.h */,
+				DAE844F5184F4F2600BCF896 /* LoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -323,7 +328,6 @@
 				ORGANIZATIONNAME = IntelliCloud;
 				TargetAttributes = {
 					74D47721183CE9B300D33FC5 = {
-						DevelopmentTeam = CU3Z5M9BXQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -420,6 +424,7 @@
 				C6CB6D76183E1B2400D34039 /* User.m in Sources */,
 				C6CB6D73183E11C700D34039 /* Question.m in Sources */,
 				C6CB6D7F183E397F00D34039 /* MainNavigationController.m in Sources */,
+				DAE844F6184F4F2600BCF896 /* LoginViewController.m in Sources */,
 				C6CE2B5E184DEBE900C27EB4 /* BaseViewController.m in Sources */,
 				C608247E184D2A040060990A /* RootViewController.m in Sources */,
 				C682437E18429214005AC9F2 /* Source.m in Sources */,
