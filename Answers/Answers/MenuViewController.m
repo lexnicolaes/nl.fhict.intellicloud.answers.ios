@@ -22,15 +22,15 @@
     // Setup table data
     _menuItems = @[
                    @[
-                       @{@"title": @"Alles", @"icon": @"", @"id": @"inboxViewController"},
-                       @{@"title": @"Openstaand", @"icon": @"MenuIconOpen", @"id": @"openViewController"},
-                       @{@"title": @"Afgekeurd", @"icon": @"MenuIconRejected", @"id": @"rejectedViewController"},
-                       @{@"title": @"In behandeling", @"icon": @"MenuIconPending", @"id": @"pendingViewController"},
-                       @{@"title": @"Review", @"icon": @"MenuIconReview", @"id": @"reviewViewController"}],
+                       @{@"title": NSLocalizedString(@"Inbox", nil), @"icon": @"", @"id": @"inboxViewController"},
+                       @{@"title": NSLocalizedString(@"Open", nil), @"icon": @"MenuIconOpen", @"id": @"openViewController"},
+                       @{@"title": NSLocalizedString(@"Rejected", nil), @"icon": @"MenuIconRejected", @"id": @"rejectedViewController"},
+                       @{@"title": NSLocalizedString(@"Pending", nil), @"icon": @"MenuIconPending", @"id": @"pendingViewController"},
+                       @{@"title": NSLocalizedString(@"In review", nil), @"icon": @"MenuIconReview", @"id": @"reviewViewController"}],
                    @[
-                       @{@"title": @"Over IntelliCloud", @"icon": @"", @"id": @"aboutViewController"}],
+                       @{@"title": NSLocalizedString(@"About IntelliCloud", nil), @"icon": @"MenuIconOpen", @"id": @"aboutViewController"}],
                    @[
-                       @{@"title": @"Afmelden", @"icon": @"", @"id": @"inboxViewController"}]];
+                       @{@"title": NSLocalizedString(@"Sign out", nil), @"icon": @"", @"id": @"inboxViewController"}]];
     
     // TableView settings
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -84,21 +84,27 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier  forIndexPath:indexPath];
     
-	// Cell formating
-	cell.backgroundColor = [UIColor clearColor];
-	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-	cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
-	cell.selectedBackgroundView = [[UIView alloc] init];
+	if (cell == nil)
+	{
+		// Cell formating
+		cell.backgroundColor = [UIColor clearColor];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
+		cell.selectedBackgroundView = [[UIView alloc] init];
+	}
 	
 	// Get item for this row from datasource
 	NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	
-	// Get icon imageview from storyboard
-	UIImageView *titleImageView = (UIImageView *)[cell.contentView viewWithTag:101];
-	// Get icon image from datasource
-	UIImage *titleImage = [UIImage imageNamed:[itemForRow valueForKey:@"icon"]];
-	// Set image to icon imageview
-	[titleImageView setImage:titleImage];
+	if (![(NSString*)[itemForRow valueForKey:@"icon"] isEqualToString:@""])
+	{
+		// Get icon imageview from storyboard
+		UIImageView *titleImageView = (UIImageView *)[cell.contentView viewWithTag:101];
+		// Get icon image from datasource
+		UIImage *titleImage = [UIImage imageNamed:[itemForRow valueForKey:@"icon"]];
+		// Set image to icon imageview
+		[titleImageView setImage:titleImage];
+	}
 	
 	// Get label from storyboard
 	UILabel *titleLabel = (UILabel *)[cell.contentView viewWithTag:102];
