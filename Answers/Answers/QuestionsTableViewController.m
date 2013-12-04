@@ -137,13 +137,11 @@
 
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
+// Send the selected question to the QuestionDetailController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    NSLog(@"selected: %ld", (long)[self.tableView indexPathForSelectedRow].row);
+    QuestionDetailViewController *questionDetailController = segue.destinationViewController;
+    questionDetailController.selectedQuestion = (Question *)[_questions objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 }
 
 @end
