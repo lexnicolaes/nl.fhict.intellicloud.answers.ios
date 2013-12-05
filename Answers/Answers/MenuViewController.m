@@ -42,16 +42,16 @@
 	// Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = MenuTableCellHeight;
     
-    __block UIImageView * weakUserImage = _currentUserImageView;
-    [_currentUserImageView setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://guessthelighting.com/wp-content/uploads/2012/02/steve_jobs_albert-watson.jpg"]] placeholderImage:[UIImage imageNamed:@"UserIcon"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        [weakUserImage setImage:image];
-        weakUserImage.clipsToBounds = YES;
-        weakUserImage.layer.cornerRadius = weakUserImage.frame.size.width / 2; // half of the width
-        weakUserImage.layer.borderColor = [UIColor colorWithWhite:1.0f alpha:0.55f].CGColor;
-        weakUserImage.layer.borderWidth = 0.7f;
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-    }];
+    // Set avatar for authenticated user
+    // todo: retrieve dynamically from AuthenticationManager or backend
+    _currentUserImageView.clipsToBounds = YES;
+    _currentUserImageView.layer.cornerRadius = _currentUserImageView.frame.size.width / 2; // half of the width
+    _currentUserImageView.layer.borderColor = [UIColor colorWithWhite:1.0f alpha:0.55f].CGColor;
+    _currentUserImageView.layer.borderWidth = 0.7f;
+    [_currentUserImageView setImageWithURL:[NSURL URLWithString:@"http://guessthelighting.com/wp-content/uploads/2012/02/steve_jobs_albert-watson.jpg"] placeholderImage:[UIImage imageNamed:@"UserIcon"]];
     
+    // Set name for for authenticated user
+    // todo: retrieve dynamically from AuthenticationManager or backend
     _currentUserLabel.text = @"Steven Paul Jobs";
 }
 
