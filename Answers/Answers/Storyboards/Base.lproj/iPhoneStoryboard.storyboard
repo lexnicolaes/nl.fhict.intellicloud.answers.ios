@@ -262,7 +262,7 @@
                                 <rect key="frame" x="0.0" y="196" width="320" height="191"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Type your answer here..." translatesAutoresizingMaskIntoConstraints="NO" id="RRd-rI-vfb">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RRd-rI-vfb">
                                         <rect key="frame" x="20" y="0.0" width="280" height="180"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -270,6 +270,13 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykG-tv-Cnd">
+                                        <rect key="frame" x="25" y="6" width="213" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.63921568630000003" green="0.63921568630000003" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -303,6 +310,7 @@
                     <navigationItem key="navigationItem" id="Sqo-Ds-IAw"/>
                     <connections>
                         <outlet property="answerLabel" destination="pm3-tK-RtI" id="nbY-7g-rIw"/>
+                        <outlet property="answerPlaceholderLabel" destination="ykG-tv-Cnd" id="Skc-jt-AEQ"/>
                         <outlet property="answerTextbox" destination="RRd-rI-vfb" id="E3A-1p-HF1"/>
                         <outlet property="questionLabel" destination="mGV-5J-kPt" id="LwY-Si-d01"/>
                         <outlet property="questionTextbox" destination="fTw-uq-pOm" id="Nvq-VR-z1B"/>
