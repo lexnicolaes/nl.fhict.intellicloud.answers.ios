@@ -33,6 +33,7 @@
 		C6CE2B5B184DEB1C00C27EB4 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */; };
 		C6CE2B5E184DEBE900C27EB4 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */; };
 		C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */; };
+		DA140073184F6F1C00325D65 /* AnswerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA140072184F6F1C00325D65 /* AnswerDetailViewController.m */; };
 		DAE844F6184F4F2600BCF896 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE844F5184F4F2600BCF896 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,8 @@
 		C6CE2B5D184DEBE900C27EB4 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C6EF8487183EA9C50055313D /* ReviewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsTableViewController.h; sourceTree = "<group>"; };
 		C6EF8488183EA9C50055313D /* ReviewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsTableViewController.m; sourceTree = "<group>"; };
+		DA140071184F6F1C00325D65 /* AnswerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerDetailViewController.h; sourceTree = "<group>"; };
+		DA140072184F6F1C00325D65 /* AnswerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerDetailViewController.m; sourceTree = "<group>"; };
 		DAE844F4184F4F2600BCF896 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DAE844F5184F4F2600BCF896 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F7CF620837114A219F247EDB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +264,8 @@
 				C6CE2B5A184DEB1C00C27EB4 /* InboxViewController.m */,
 				DAE844F4184F4F2600BCF896 /* LoginViewController.h */,
 				DAE844F5184F4F2600BCF896 /* LoginViewController.m */,
+				DA140071184F6F1C00325D65 /* AnswerDetailViewController.h */,
+				DA140072184F6F1C00325D65 /* AnswerDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				C6CE2B5E184DEBE900C27EB4 /* BaseViewController.m in Sources */,
 				C608247E184D2A040060990A /* RootViewController.m in Sources */,
 				C682437E18429214005AC9F2 /* Source.m in Sources */,
+				DA140073184F6F1C00325D65 /* AnswerDetailViewController.m in Sources */,
 				74D47732183CE9B300D33FC5 /* main.m in Sources */,
 				C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */,
 				C6CB6D69183E08FA00D34039 /* QuestionsTableViewController.m in Sources */,
