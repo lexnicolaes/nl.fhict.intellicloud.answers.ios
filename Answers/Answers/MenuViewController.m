@@ -7,7 +7,6 @@
 //
 
 #import "MenuViewController.h"
-#import "UIViewController+RESideMenu.h"
 
 @interface MenuViewController ()
 
@@ -38,9 +37,22 @@
     self.tableView.bounces = YES;
     self.tableView.scrollsToTop = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.scrollEnabled = NO;
 	
 	// Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = MenuTableCellHeight;
+    
+    __block UIImageView * weakUserImage = _currentUserImageView;
+    [_currentUserImageView setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://guessthelighting.com/wp-content/uploads/2012/02/steve_jobs_albert-watson.jpg"]] placeholderImage:[UIImage imageNamed:@"UserIcon"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        [weakUserImage setImage:image];
+        weakUserImage.clipsToBounds = YES;
+        weakUserImage.layer.cornerRadius = weakUserImage.frame.size.width / 2; // half of the width
+        weakUserImage.layer.borderColor = [UIColor colorWithWhite:1.0f alpha:0.55f].CGColor;
+        weakUserImage.layer.borderWidth = 0.7f;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+    }];
+    
+    _currentUserLabel.text = @"Steven Paul Jobs";
 }
 
 #pragma mark -
