@@ -15,6 +15,19 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="o4s-B0-5i1">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYd-8e-D28">
+                                    <rect key="frame" x="20" y="34" width="60" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID0-V6-r0j">
+                                    <rect key="frame" x="88" y="43" width="212" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
@@ -46,6 +59,10 @@
                             <outlet property="delegate" destination="RHb-e9-Uwp" id="f2Q-PX-e9d"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="currentUserImageView" destination="zYd-8e-D28" id="Cxz-Zg-8Uu"/>
+                        <outlet property="currentUserLabel" destination="ID0-V6-r0j" id="dV3-MU-OK8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6te-R1-Kuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

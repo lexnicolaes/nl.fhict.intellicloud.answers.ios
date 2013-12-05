@@ -28,9 +28,9 @@
                        @{@"title": NSLocalizedString(@"Pending", nil), @"icon": @"MenuIconPending", @"id": @"pendingViewController"},
                        @{@"title": NSLocalizedString(@"In review", nil), @"icon": @"MenuIconReview", @"id": @"reviewViewController"}],
                    @[
-                       @{@"title": NSLocalizedString(@"About IntelliCloud", nil), @"icon": @"MenuIconOpen", @"id": @"aboutViewController"}],
+                       @{@"title": NSLocalizedString(@"About IntelliCloud", nil), @"icon": @"", @"id": @"aboutViewController"}],
                    @[
-                       @{@"title": NSLocalizedString(@"Sign out", nil), @"icon": @"", @"id": @"inboxViewController"}]];
+                       @{@"title": NSLocalizedString(@"Sign out", nil), @"icon": @"MenuIconSignOut", @"id": @"inboxViewController"}]];
     
     // TableView settings
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -38,6 +38,9 @@
     self.tableView.bounces = YES;
     self.tableView.scrollsToTop = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
+	
+	// Static height for tableviewcell, see storyboard
+    self.tableView.rowHeight = MenuTableCellHeight;
 }
 
 #pragma mark -
@@ -72,26 +75,18 @@
     return [[_menuItems objectAtIndex:sectionIndex] count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	// Return the height of the tableView cell
-    return 46; // todo: move to a var in the header
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"LeCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier  forIndexPath:indexPath];
-    
-	if (cell == nil)
-	{
-		// Cell formating
-		cell.backgroundColor = [UIColor clearColor];
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-		cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
-		cell.selectedBackgroundView = [[UIView alloc] init];
-	}
+	
+	// Custom view for the cell background when selected cell
+	UIView *cellBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+	// White background color with transparency
+	cellBackgroundView.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.3];
+	// Set custom view to selectedBackgroundView
+	cell.selectedBackgroundView = cellBackgroundView;
 	
 	// Get item for this row from datasource
 	NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
