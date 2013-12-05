@@ -183,9 +183,6 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="EJp-iB-lDo" kind="push" id="Mwn-Tx-vsH"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
