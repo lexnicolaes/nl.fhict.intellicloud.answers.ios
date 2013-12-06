@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface InboxViewController : BaseViewController
+@interface InboxViewController : BaseTableViewController
+
+@property (strong, nonatomic) NSMutableArray *tableData;
+
+/**
+ * Apply a NSPredicate to the table data and reload the table
+ * @param predicate to use
+ */
+- (void)filterTableWithPredicate:(NSPredicate *)predicate;
 
 @end
