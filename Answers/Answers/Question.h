@@ -84,4 +84,7 @@ typedef NS_ENUM(NSInteger, QuestionState)
  */
 + (NSURLSessionDataTask *)getQuestionsWithBlock:(void (^)(NSArray *questions, NSError *error))block;
 
++ (NSMutableArray *)_fillArrayWithDummyData;
++ (NSMutableArray *)getDummyData;
+
 @end

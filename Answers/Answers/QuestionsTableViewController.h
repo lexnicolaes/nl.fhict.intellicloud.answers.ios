@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FormatterKit/TTTTimeIntervalFormatter.h>
 #import <FormatterKit/TTTColorFormatter.h>
+#import "BaseTableViewController.h"
 #import "Question.h"
 #import "QuestionDetailViewController.h"
 
@@ -27,13 +28,15 @@ static CGFloat const QuestionTableCellHeight = 82.0f;
 /**
  * TableView for holding questions
  */
-@interface QuestionsTableViewController : UITableViewController
+@interface QuestionsTableViewController : BaseTableViewController
 
 /**
- * @property questions
+ * @property tableData
  * @brief Holds questions to be shown in the TableView, values are loaded from WS
  */
-@property (readwrite, nonatomic, strong) NSMutableArray *questions;
+@property (readwrite, strong, nonatomic) NSPredicate *predicate;
+@property (readwrite, strong, nonatomic) NSMutableArray *rawData;
+@property (readwrite, strong, nonatomic) NSArray *tableData;
 
 /**
  * @brief Loads data from the webservice and reloads the tableview
@@ -46,5 +49,14 @@ static CGFloat const QuestionTableCellHeight = 82.0f;
  * @param UIBackgroundFetchResult completion handler block
  */
 - (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
+
+/**
+ * Apply a NSPredicate to the table data and reload the table
+ * This allows the data the be loaded once and filtering the data for each view mode accordingly
+ * @param predicate to use
+ */
+- (void)filterTableWithPredicate:(NSPredicate *)predicate;
+
+- (NSArray *)getFilteredData;
 
 @end

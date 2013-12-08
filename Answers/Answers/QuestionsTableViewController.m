@@ -42,6 +42,8 @@
     // Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = QuestionTableCellHeight;
     
+    self.predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+    
     // Load questions for view
     [self reload:nil];
 }
@@ -55,7 +57,7 @@
     __block bool state = NO;
     
     // retrieve data from webservice
-    [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
+    /*[Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
     {
         if (!error)
         {
@@ -67,8 +69,10 @@
             
             state = YES;
         }
-    }];
-    
+    }];*/
+    _rawData = [Question getDummyData];
+    _tableData = [_rawData filteredArrayUsingPredicate:_predicate];
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
     
     return state;
@@ -77,7 +81,7 @@
 /**
  * @brief Reloads data for background fetch
  */
-- (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
+/*- (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
 {
     UIBackgroundFetchResult result = UIBackgroundFetchResultFailed;
     
@@ -87,14 +91,30 @@
     }
     
     completionHandler(result);
-}
+}*/
 
 #pragma mark - Table view data source
+
+/**
+ * Apply a NSPredicate to the table data and reload the table
+ * @param predicate to use
+ */
+- (void)filterTableWithPredicate:(NSPredicate *)predicate
+{
+    _predicate = predicate;
+    [self reload:nil];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Count nr of items in questions array
-    return (NSInteger)[_questions count];
+    return (NSInteger)[_tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,22 +123,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Get question for this row
-    Question *question = (Question *)[_questions objectAtIndex:indexPath.row];
+    Question *question = (Question *)[_tableData objectAtIndex:indexPath.row];
     
     // Get author label from storyboard
     UILabel *authorLabel = (UILabel *)[cell.contentView viewWithTag:100];
     
     // Prepare infix, add suffix space when we have a infix
-    NSString *infix = question.questionUser.infix ? [NSString stringWithFormat:@"%@ ", question.questionUser.infix] : nil;
+    NSString *infix = question.questionUser.infix != nil ? [NSString stringWithFormat:@" %@ ", question.questionUser.infix] : @" ";
     
     // Set author label
-    authorLabel.text = [NSString stringWithFormat:@"%@ %@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
+    authorLabel.text = [NSString stringWithFormat:@"%@%@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
     
     // Get time label from storyboard
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
     
     // Set time label (static for now)
     timeLabel.text = @"just now";
+    
+    // Get icon imageview from storyboard
+    //UIImageView *iconImageView = (UIImageView *)[cell.contentView viewWithTag:120];
     
     // Get question label from storyboard
     UILabel *questionLabel = (UILabel *)[cell.contentView viewWithTag:130];
@@ -140,8 +163,9 @@
 // Send the selected question to the QuestionDetailController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    QuestionDetailViewController *questionDetailController = segue.destinationViewController;
-    questionDetailController.selectedQuestion = (Question *)[_questions objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    //QuestionDetailViewController *questionDetailController = segue.destinationViewController;
+    //questionDetailController.selectedQuestion = (Question *)[_questions objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 }
 
 @end

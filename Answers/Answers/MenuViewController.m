@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "Question.h"
 
 @interface MenuViewController ()
 
@@ -21,15 +22,15 @@
     // Setup table data
     _menuItems = @[
                    @[
-                       @{@"title": NSLocalizedString(@"Inbox", nil), @"icon": @"", @"id": @"inboxViewController"},
-                       @{@"title": NSLocalizedString(@"Open", nil), @"icon": @"MenuIconOpen", @"id": @"openViewController"},
-                       @{@"title": NSLocalizedString(@"Rejected", nil), @"icon": @"MenuIconRejected", @"id": @"rejectedViewController"},
-                       @{@"title": NSLocalizedString(@"Pending", nil), @"icon": @"MenuIconPending", @"id": @"pendingViewController"},
-                       @{@"title": NSLocalizedString(@"In review", nil), @"icon": @"MenuIconReview", @"id": @"reviewViewController"}],
+                       @{@"title": NSLocalizedString(@"Inbox", nil), @"icon": @"", @"predicate": [NSPredicate predicateWithFormat:@"questionState == %d", QuestionStateUpForAnswer]},  //implement predicates
+                       @{@"title": NSLocalizedString(@"Open", nil), @"icon": @"MenuIconOpen", @"predicate": [NSPredicate predicateWithFormat:@"questionState == %d", QuestionStateOpen]},
+                       @{@"title": NSLocalizedString(@"Rejected", nil), @"icon": @"MenuIconRejected", @"predicate": @"rejectedViewController"},
+                       @{@"title": NSLocalizedString(@"Pending", nil), @"icon": @"MenuIconPending", @"predicate": @"pendingViewController"},
+                       @{@"title": NSLocalizedString(@"In review", nil), @"icon": @"MenuIconReview", @"predicate": @"reviewViewController"}],
                    @[
-                       @{@"title": NSLocalizedString(@"About IntelliCloud", nil), @"icon": @"", @"id": @"aboutViewController"}],
+                       @{@"title": NSLocalizedString(@"About IntelliCloud", nil), @"icon": @"", @"id": @"aboutViewController"}],  ///rename id to storyboard id?
                    @[
-                       @{@"title": NSLocalizedString(@"Sign out", nil), @"icon": @"MenuIconSignOut", @"id": @"inboxViewController"}]];
+                       @{@"title": NSLocalizedString(@"Sign out", nil), @"icon": @"MenuIconSignOut", @"action": @"inboxViewController"}]];  //implement action
     
     // TableView settings
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -62,12 +63,44 @@
 {
 	// Deselect row
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Get data item for this row
+    NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    
+    // Get navigation controller for sliding menu
     UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
 	
+    // Get root view of navigation controller
+    UIViewController *rootView = navigationController.viewControllers[0];
+
+    //NSStringFromClass([)
+    
+    
+    // Check for @vc property... current vc == target vc do nothing, else make a new one and push it
+    
+    // do we have a @predicate? set it
+    if ([rootView respondsToSelector:@selector(filterTableWithPredicate:)] && [[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
+    {
+        NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
+        QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)rootView;
+        [questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
+    }
+    else
+    {
+        
+    }
+    
+    // do we have an action? run it
+    
+    // set title, maybe check for @nav_title property first?
+    rootView.title = (NSString *)[itemForRow objectForKey:@"title"];
+    
+    // we just assume there is one "special" property in the data source
+    
 	// Get item for this row
-    NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    //NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	// Instantiate vc from the storyboard using id from datasource
-    navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
+    //navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
 	
 	// Hide the side menu
     [self.sideMenuViewController hideMenuViewController];
