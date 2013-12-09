@@ -8,8 +8,6 @@
 
 #import "AuthenticationManager.h"
 
-#import "MainNavigationController.h"
-
 @implementation AuthenticationManager
 
 /**
@@ -26,17 +24,26 @@
 	return _sharedClient;
 }
 
+/**
+ * @brief check if signed in
+ */
 - (BOOL)isSignedIn
 {
 	BOOL isSignedIn = self.auth.canAuthorize;
 	return isSignedIn;
 }
 
+/**
+ * @brief check if autenticated
+ */
 - (BOOL) checkAutentication
 {
 	return [_auth canAuthorize];
 }
 
+/**
+ * @brief Push a google login view
+ */
 - (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc
 {
 	_lastVC = vc;
@@ -44,13 +51,9 @@
 	[self signInToGoogle];
 }
 
-- (BOOL)shouldSaveInKeychain
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	BOOL flag = [defaults boolForKey:kShouldSaveInKeychainKey];
-	return flag;
-}
-
+/**
+ * @brief Sign out from google
+ */
 - (void)signOut
 {
 	if ([self.auth.serviceProvider isEqual:kGTMOAuth2ServiceProviderGoogle])
@@ -66,15 +69,13 @@
 	self.auth = nil;
 }
 
+/**
+ * @brief Sign in to google
+ */
 - (void)signInToGoogle
 {
+    //Make shure signed out before sign in
 	[self signOut];
-    
-	NSString *keychainItemName = nil;
-	if ([self shouldSaveInKeychain])
-	{
-		keychainItemName = kKeychainItemName;
-	}
     
 	// Display the autentication view.
 	SEL finishedSel = @selector(viewController:finishedWithAuth:error:);
@@ -96,6 +97,9 @@
 	[_lastVC presentViewController:loginNavigationController animated:YES completion:nil];
 }
 
+/**
+ * @brief Handler to catch the response of GTMOAuth2ViewControllerTouch
+ */
 - (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
 	if (error != nil)
@@ -121,8 +125,6 @@
         
 		// Save the authentication object
 		self.auth = auth;
-        
-        [Question getQuestionsWithBlock:nil];
         
 		// Dismiss view controllers
 		[viewController dismissViewControllerAnimated:YES completion:^

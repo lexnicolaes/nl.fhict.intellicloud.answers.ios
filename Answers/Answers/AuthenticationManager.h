@@ -10,6 +10,7 @@
 
 #import "GTMOAuth2ViewControllerTouch.h"
 
+#import "MainNavigationController.h"
 #import "Question.h"
 
 static NSString *const kKeychainItemName = @"IntelliCloud OAuth2 Google Plus";
@@ -23,16 +24,41 @@ static NSString *const kShouldSaveInKeychainKey = @"shouldSaveInKeychain";
 
 @interface AuthenticationManager : NSObject
 
+/**
+ * @property lastVC
+ * @brief Save the vc to push the google login to it.
+ */
 @property (nonatomic, strong) UIViewController* lastVC;
 
+/**
+ * @property auth
+ * @brief Save the google auth2 object.
+ */
 @property (nonatomic, strong) GTMOAuth2Authentication* auth;
 
+/**
+ * @brief Get singleton instance of AuthenticationManager
+ */
 + (instancetype)sharedClient;
 
+/**
+ * @brief Push a google login view over vc
+ */
 - (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc;
+
+/**
+ * @brief Sign out from google
+ */
 - (void)signOut;
 
+/**
+ * @brief check if signed in
+ */
 - (BOOL)isSignedIn;
+
+/**
+ * @brief check if autenticated
+ */
 - (BOOL) checkAutentication;
 
 @end
