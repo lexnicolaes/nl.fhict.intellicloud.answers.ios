@@ -66,8 +66,17 @@
 	
 	// Get item for this row
     NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-	// Instantiate vc from the storyboard using id from datasource
-    navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
+    
+    if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
+    {
+        [[AuthenticationManager sharedClient] signOut];
+        [[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+    }
+    else
+    {
+        // Instantiate vc from the storyboard using id from datasource
+        navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
+	}
 	
 	// Hide the side menu
     [self.sideMenuViewController hideMenuViewController];

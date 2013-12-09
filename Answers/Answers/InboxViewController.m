@@ -19,6 +19,12 @@
     [super viewDidLoad];
 
     self.title = NSLocalizedString(@"Inbox", nil);
+    
+    //Present LoginViewController if not logged in
+    if (![[AuthenticationManager sharedClient] checkAutentication])
+    {
+        [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
