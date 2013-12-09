@@ -86,11 +86,6 @@
 															  delegate:self
 													  finishedSelector:finishedSel];
     
-	//viewController.signIn.shouldFetchGoogleUserProfile = YES;
-    
-    UIWebView *kanker = [[UIWebView alloc] init];
-    viewController.webView = kanker;
-    
 	// Display some html briefly before the sign-in page loads
 	NSString *html = [NSString stringWithFormat:@"<html><body style=\"background-color:#ffffff;font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;font-weight: 300;\"><div style=\"text-align:center;margin-top:64px;\">%@</div></body></html>", NSLocalizedString(@"Loading...", @"Text to show when login screen is loading.")];
 	viewController.initialHTMLString = html;
