@@ -98,9 +98,11 @@
     // we just assume there is one "special" property in the data source
     
 	// Get item for this row
+<<<<<<< HEAD
     //NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	// Instantiate vc from the storyboard using id from datasource
     //navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
+=======
     NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
@@ -113,6 +115,7 @@
         // Instantiate vc from the storyboard using id from datasource
         navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
 	}
+>>>>>>> upstream/master
 	
 	// Hide the side menu
     [self.sideMenuViewController hideMenuViewController];

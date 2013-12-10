@@ -11,6 +11,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "QuestionsTableViewController.h"
 
+#import "AuthenticationManager.h"
+
 /**
  * TableViewCell height for menu
  */

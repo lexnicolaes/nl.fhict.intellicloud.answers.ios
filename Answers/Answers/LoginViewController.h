@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "AuthenticationManager.h"
+
 @interface LoginViewController : UIViewController
 
 /**
