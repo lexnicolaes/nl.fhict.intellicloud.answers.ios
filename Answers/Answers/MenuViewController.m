@@ -79,7 +79,12 @@
     // Check for @vc property... current vc == target vc do nothing, else make a new one and push it
     
     // press logout? do it
-    if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
+    if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"About IntelliCloud", nil)])
+    {
+        navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"]];
+    }
+    // press logout? do it
+    else if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
     {
         [[AuthenticationManager sharedClient] signOut];
         [[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];

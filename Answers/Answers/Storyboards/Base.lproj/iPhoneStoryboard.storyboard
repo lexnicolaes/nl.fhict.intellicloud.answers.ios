@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="f1k-aw-0se">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="461"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="pt8-rp-2tz">
@@ -35,7 +35,7 @@
                             <tableViewSection id="Dwa-fG-ZfX">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="7xo-kw-QW3" style="IBUITableViewCellStyleDefault" id="4z2-Gh-kNp">
-                                        <rect key="frame" x="0.0" y="461" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="525" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4z2-Gh-kNp" id="3nA-eS-O69">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -66,7 +66,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4EZ-mX-Q0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-198" y="-59"/>
+            <point key="canvasLocation" x="-214" y="-308"/>
         </scene>
         <!--Acknowledgement View Controller-->
         <scene sceneID="XHg-I7-zsm">
@@ -398,6 +398,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="vYW-cD-59G" kind="relationship" relationship="rootViewController" id="l5e-1D-CF8"/>
+                        <segue destination="5Ay-bR-4oF" kind="push" id="3gh-xS-QIn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTT-Pn-qS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
