@@ -78,16 +78,18 @@
     
     // Check for @vc property... current vc == target vc do nothing, else make a new one and push it
     
+    // press logout? do it
+    if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
+    {
+        [[AuthenticationManager sharedClient] signOut];
+        [[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+    }
     // do we have a @predicate? set it
-    if ([rootView respondsToSelector:@selector(filterTableWithPredicate:)] && [[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
+    else if ([rootView respondsToSelector:@selector(filterTableWithPredicate:)] && [[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
     {
         NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
         QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)rootView;
         [questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
-    }
-    else
-    {
-        
     }
     
     // do we have an action? run it
@@ -101,7 +103,7 @@
     //NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 	// Instantiate vc from the storyboard using id from datasource
     //navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
-    NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    /*NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
     {
@@ -112,7 +114,7 @@
     {
         // Instantiate vc from the storyboard using id from datasource
         navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
-	}
+	}*/
 	
 	// Hide the side menu
     [self.sideMenuViewController hideMenuViewController];

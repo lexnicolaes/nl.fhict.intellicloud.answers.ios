@@ -13,6 +13,7 @@
 #import "Question.h"
 #import "Source.h"
 #import "QuestionDetailViewController.h"
+#import "AuthenticationManager.h"
 
 NS_ENUM(NSUInteger, webServiceDataState)
 {

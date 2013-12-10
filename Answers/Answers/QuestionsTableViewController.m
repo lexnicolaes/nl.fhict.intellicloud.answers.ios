@@ -42,8 +42,14 @@
     // Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = QuestionTableCellHeight;
     
+    //Present LoginViewController if not logged in
+    if (![[AuthenticationManager sharedClient] checkAutentication])
+    {
+        [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+    }
+    
     // Load questions for view
-    [self reload:nil];
+    //[self reload:nil];
 }
 
 /**
@@ -104,8 +110,12 @@
         _predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     }
     
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"creationTime"
+                                        ascending:NO];
+    
     // Apply predicate
-    _tableData = [_rawData filteredArrayUsingPredicate:_predicate];
+    _tableData = [[_rawData filteredArrayUsingPredicate:_predicate] sortedArrayUsingDescriptors:@[dateDescriptor]];
     
     // Reload the table
     [self.tableView reloadData];
@@ -180,7 +190,10 @@
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
     
     // Set time label (static for now)
-    timeLabel.text = @"just now";
+    //NSLocale* currentLocale = [NSLocale currentLocale];
+    TTTTimeIntervalFormatter *timeFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    timeLabel.text = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:question.creationTime];
+    NSLog(@"%@", question.creationTime);
     
     // Get icon imageview from storyboard
     //UIImageView *iconImageView = (UIImageView *)[cell.contentView viewWithTag:120];
