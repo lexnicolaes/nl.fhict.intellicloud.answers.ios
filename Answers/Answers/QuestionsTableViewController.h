@@ -11,6 +11,7 @@
 #import <FormatterKit/TTTColorFormatter.h>
 #import "BaseTableViewController.h"
 #import "Question.h"
+#import "Source.h"
 #import "QuestionDetailViewController.h"
 
 NS_ENUM(NSUInteger, webServiceDataState)
@@ -51,12 +52,14 @@ static CGFloat const QuestionTableCellHeight = 82.0f;
 - (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
 
 /**
- * Apply a NSPredicate to the table data and reload the table
- * This allows the data the be loaded once and filtering the data for each view mode accordingly
+ * Apply the NSPredicate to the table data and reload the table
+ */
+-(void)filterTableWithPredicate;
+
+/**
+ * Apply a NSPredicate to the table data
  * @param predicate to use
  */
 - (void)filterTableWithPredicate:(NSPredicate *)predicate;
-
-- (NSArray *)getFilteredData;
 
 @end

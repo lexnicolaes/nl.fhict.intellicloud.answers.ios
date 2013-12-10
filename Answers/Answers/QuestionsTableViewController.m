@@ -42,8 +42,6 @@
     // Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = QuestionTableCellHeight;
     
-    self.predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
-    
     // Load questions for view
     [self reload:nil];
 }
@@ -57,22 +55,22 @@
     __block bool state = NO;
     
     // retrieve data from webservice
-    /*[Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
+    [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
     {
         if (!error)
         {
-            // Set questions array with retrieved questions
-            self.questions = (NSMutableArray *)questions;
+            // Get questions data, use copy to get NSArray from NSMutableArray
+            _rawData = [questions copy];
             
-            // reload the table
-            [self.tableView reloadData];
+            // Apply predicate
+            [self filterTableWithPredicate];
             
             state = YES;
         }
-    }];*/
-    _rawData = [Question getDummyData];
-    _tableData = [_rawData filteredArrayUsingPredicate:_predicate];
-    [self.tableView reloadData];
+    }];
+    //_rawData = [Question getDummyData];
+    //_tableData = [_rawData filteredArrayUsingPredicate:_predicate];
+    //[self.tableView reloadData];
     [self.refreshControl endRefreshing];
     
     return state;
@@ -96,13 +94,33 @@
 #pragma mark - Table view data source
 
 /**
- * Apply a NSPredicate to the table data and reload the table
+ * Apply the NSPredicate to the table data and reload the table
+ */
+-(void)filterTableWithPredicate
+{
+    if (!_predicate)
+    {
+        // Default predicate when no existing is set
+        _predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+    }
+    
+    // Apply predicate
+    _tableData = [_rawData filteredArrayUsingPredicate:_predicate];
+    
+    // Reload the table
+    [self.tableView reloadData];
+}
+
+/**
+ * Apply a NSPredicate to the table data
  * @param predicate to use
  */
 - (void)filterTableWithPredicate:(NSPredicate *)predicate
 {
+    // Set predicate
     _predicate = predicate;
-    [self reload:nil];
+    
+    [self filterTableWithPredicate];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -128,11 +146,35 @@
     // Get author label from storyboard
     UILabel *authorLabel = (UILabel *)[cell.contentView viewWithTag:100];
     
-    // Prepare infix, add suffix space when we have a infix
-    NSString *infix = question.questionUser.infix != nil ? [NSString stringWithFormat:@" %@ ", question.questionUser.infix] : @" ";
-    
     // Set author label
-    authorLabel.text = [NSString stringWithFormat:@"%@%@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
+    NSString *authorText = NSLocalizedString(@"Unknown user", nil);
+    if (question.questionUser.firstname != nil && question.questionUser.lastname != nil)
+    {
+        // Prepare infix, add suffix space when we have a infix
+        NSString *infix = question.questionUser.infix != nil ? [NSString stringWithFormat:@" %@ ", question.questionUser.infix] : @" ";
+        authorText = [NSString stringWithFormat:@"%@%@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
+    }
+    else
+    {
+        Source *mailSource = nil;
+        @try
+        {
+            NSPredicate *mailPredicate = [NSPredicate predicateWithFormat:@"sourceDefinition.name == %@", @"Mail"];
+            mailSource = [[question.questionUser.sources filteredArrayUsingPredicate:mailPredicate] firstObject];
+        }
+        @catch (NSException *exception)
+        {
+            NSLog(@"Whups: %@", exception);
+        }
+        @finally
+        {
+            if (mailSource != nil)
+            {
+                authorText = [NSString stringWithFormat:@"<%@>", mailSource.value];
+            }
+        }
+    }
+    authorLabel.text = authorText;
     
     // Get time label from storyboard
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
@@ -164,8 +206,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    //QuestionDetailViewController *questionDetailController = segue.destinationViewController;
-    //questionDetailController.selectedQuestion = (Question *)[_questions objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    QuestionDetailViewController *questionDetailController = segue.destinationViewController;
+    Question *selectedQuestion = (Question *)[_tableData objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    questionDetailController.selectedQuestion = selectedQuestion;
 }
 
 @end

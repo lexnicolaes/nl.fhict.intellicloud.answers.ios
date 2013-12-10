@@ -20,23 +20,26 @@
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
 {
     self = [super init];
-    if (!self)
+    if (!self || [attributes isKindOfClass:[NSNull class]])
     {
         return nil;
     }
     
-    // Disabled, we get null pointers when using mock data
-    //self.userID = [[attributes valueForKeyPath:@"Id"] integerValue];
-    self.username= [attributes valueForKey:@"Username"];
+    self.userID = [[attributes valueForKeyPath:@"Id"] integerValue];
+    self.username = [attributes valueForKey:@"Username"];
     self.password = [attributes valueForKey:@"Password"];
-    self.firstname = [attributes valueForKey:@"FirstName"];
-    self.infix = [attributes valueForKey:@"Infix"];
-    self.lastname = [attributes valueForKey:@"LastName"];
-    // Disabled, we get null pointers when using mock data
-    //self.type = [[attributes valueForKey:@"Type"] integerValue];
-    // todo: parse array for sources (holds Source objects)
-    // todo: parse datetime for creationtime (check formatting)
-    // todo: parse array for keywords
+    self.firstname = ![[attributes valueForKey:@"FirstName"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"FirstName"] : nil;
+    self.infix = ![[attributes valueForKey:@"Infix"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"Infix"] : nil;
+    self.lastname = ![[attributes valueForKey:@"LastName"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"LastName"] : nil;
+    NSMutableArray *tempSources = [[NSMutableArray alloc] init];
+    for (NSDictionary *attr in [attributes valueForKey:@"Sources"])
+    {
+        Source *leSource = [[Source alloc] initWithAttributes:attr];
+        [tempSources addObject:leSource];
+    }
+    self.sources = [tempSources copy];
+    self.type = [[attributes valueForKey:@"Type"] integerValue];
+    self.creationTime = [NSDate dateFromDotnetDate:[attributes valueForKey:@"CreationTime"]];
     
     return self;
 }

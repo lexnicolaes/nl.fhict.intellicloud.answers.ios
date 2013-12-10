@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Source.h"
+#import "NSDate+Dotnet.h"
 
 /**
  * An enumeration indicating the type of User.
@@ -74,7 +76,7 @@ typedef NS_ENUM(NSInteger, UserType)
  * @property creationtime
  * @brief Gets the creation date and time of the answer.
  */
-@property (nonatomic, strong) NSDate * creationtime;
+@property (nonatomic, strong) NSDate * creationTime;
 
 /**
  * @property keywords

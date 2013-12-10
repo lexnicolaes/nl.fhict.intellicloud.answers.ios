@@ -21,6 +21,8 @@
 		74F57E47183CEBB50028C197 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E49183CEBB50028C197 /* iPhoneStoryboard.storyboard */; };
 		9FC8445E1195414B8753E2DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CF620837114A219F247EDB /* libPods.a */; };
 		C608247E184D2A040060990A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C608247D184D2A040060990A /* RootViewController.m */; };
+		C626ACB71856414800360C14 /* LanguageDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = C626ACB61856414800360C14 /* LanguageDefinition.m */; };
+		C626ACBA18564CC400360C14 /* NSDate+Dotnet.m in Sources */ = {isa = PBXBuildFile; fileRef = C626ACB918564CC400360C14 /* NSDate+Dotnet.m */; };
 		C6581CAA184CA20E00600009 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6581CA9184CA20E00600009 /* MenuViewController.m */; };
 		C67E7A2C1850DD99006620A6 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67E7A2B1850DD99006620A6 /* BaseTableViewController.m */; };
 		C682437E18429214005AC9F2 /* Source.m in Sources */ = {isa = PBXBuildFile; fileRef = C682437D18429214005AC9F2 /* Source.m */; };
@@ -70,6 +72,10 @@
 		84E4AB3E3B5D42FAB84CB280 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C608247C184D2A040060990A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		C608247D184D2A040060990A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		C626ACB51856414800360C14 /* LanguageDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageDefinition.h; sourceTree = "<group>"; };
+		C626ACB61856414800360C14 /* LanguageDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageDefinition.m; sourceTree = "<group>"; };
+		C626ACB818564CC400360C14 /* NSDate+Dotnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Dotnet.h"; sourceTree = "<group>"; };
+		C626ACB918564CC400360C14 /* NSDate+Dotnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Dotnet.m"; sourceTree = "<group>"; };
 		C6581CA8184CA20E00600009 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		C6581CA9184CA20E00600009 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		C67E7A2A1850DD99006620A6 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -230,6 +236,8 @@
 			children = (
 				C6CB6D7A183E382200D34039 /* UIColor+IntelliCloudStyle.h */,
 				C6CB6D7B183E382200D34039 /* UIColor+IntelliCloudStyle.m */,
+				C626ACB818564CC400360C14 /* NSDate+Dotnet.h */,
+				C626ACB918564CC400360C14 /* NSDate+Dotnet.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -247,6 +255,8 @@
 				C682437D18429214005AC9F2 /* Source.m */,
 				C6FFDBEA184F527C00349F3C /* Answer.h */,
 				C6FFDBEB184F527C00349F3C /* Answer.m */,
+				C626ACB51856414800360C14 /* LanguageDefinition.h */,
+				C626ACB61856414800360C14 /* LanguageDefinition.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -428,6 +438,7 @@
 			files = (
 				C6CB6D6D183E0F3200D34039 /* WebserviceManager.m in Sources */,
 				C6FFDBEC184F527C00349F3C /* Answer.m in Sources */,
+				C626ACBA18564CC400360C14 /* NSDate+Dotnet.m in Sources */,
 				74D47736183CE9B300D33FC5 /* AppDelegate.m in Sources */,
 				C6581CAA184CA20E00600009 /* MenuViewController.m in Sources */,
 				C6CB6D76183E1B2400D34039 /* User.m in Sources */,
@@ -439,6 +450,7 @@
 				C608247E184D2A040060990A /* RootViewController.m in Sources */,
 				C682437E18429214005AC9F2 /* Source.m in Sources */,
 				C67E7A2C1850DD99006620A6 /* BaseTableViewController.m in Sources */,
+				C626ACB71856414800360C14 /* LanguageDefinition.m in Sources */,
 				DA140073184F6F1C00325D65 /* AnswerDetailViewController.m in Sources */,
 				74D47732183CE9B300D33FC5 /* main.m in Sources */,
 				C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */,
