@@ -10,6 +10,8 @@
 #import <RESideMenu/RESideMenu.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
+#import "AuthenticationManager.h"
+
 /**
  * TableViewCell height for menu
  */

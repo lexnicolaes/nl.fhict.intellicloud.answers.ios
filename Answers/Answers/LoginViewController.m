@@ -26,7 +26,8 @@
  * Action to run at login button click/tap
  * @param action sender
  */
-- (IBAction)loginButtonClick:(id)sender {
-    NSLog(@"Make connection with Google to login");
+- (IBAction)loginButtonClick:(id)sender
+{
+    [[AuthenticationManager sharedClient] pushGoogleLoginViewControllerTo:self];
 }
 @end

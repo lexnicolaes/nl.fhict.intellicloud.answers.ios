@@ -9,6 +9,8 @@
 //#import <Foundation/Foundation.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 
+#import "AuthenticationManager.h"
+
 /**
  * Base URL for the webservice, used by the networking class
  */
