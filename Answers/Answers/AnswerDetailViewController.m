@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [super viewDidLoad];
     
     //Localize the title
@@ -23,6 +24,8 @@
     
     // Set questionLabel localized string
     _questionLabel.text = [NSLocalizedString(@"Question", nil) uppercaseString];
+    
+    _questionTextbox.text = _selectedQuestion.content;
     
     // Set answerLabel localized string
     _answerLabel.text = [NSLocalizedString(@"Answer", nil) uppercaseString];

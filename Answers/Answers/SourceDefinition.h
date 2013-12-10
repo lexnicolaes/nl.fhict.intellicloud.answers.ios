@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSDate+Dotnet.h"
 
 /**
  * Model representing a SourceDefinition retreived from the Webservice
@@ -19,7 +20,7 @@
 * @property sourceDefinitionID
 * @brief Gets or sets the unique indentifier of the source definition.
 */
-@property (nonatomic, assign) NSInteger * sourceDefinitionID;
+@property (nonatomic, assign) NSInteger sourceDefinitionID;
 
 /**
  * @property name
@@ -37,7 +38,7 @@
  * @property creationtime
  * @brief Gets or sets the creation date and time of source definition.
  */
-@property (nonatomic, strong) NSDate * creationtime;
+@property (nonatomic, strong) NSDate * creationTime;
 
 /**
  * Initialized a User with attributes from a (JSON) dictionary.

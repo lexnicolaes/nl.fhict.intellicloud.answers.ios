@@ -488,9 +488,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CB6D6D183E0F3200D34039 /* WebserviceManager.m in Sources */,
+<<<<<<< HEAD
+=======
 				C6EF8489183EA9C50055313D /* ReviewsTableViewController.m in Sources */,
 				31861293185605F500F352B3 /* GTMOAuth2ViewControllerTouch.m in Sources */,
 				C6CE2B5B184DEB1C00C27EB4 /* InboxViewController.m in Sources */,
+>>>>>>> upstream/master
 				C6FFDBEC184F527C00349F3C /* Answer.m in Sources */,
 				C626ACBA18564CC400360C14 /* NSDate+Dotnet.m in Sources */,
 				74D47736183CE9B300D33FC5 /* AppDelegate.m in Sources */,

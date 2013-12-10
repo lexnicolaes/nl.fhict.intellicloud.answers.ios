@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "SourceDefinition.h"
-
+#import "LanguageDefinition.h"
+#import "NSDate+Dotnet.h"
 #import "WebserviceManager.h"
 
 /**
@@ -39,6 +40,12 @@ typedef NS_ENUM(NSInteger, QuestionState)
  * @brief Gets the content of the question. The content contains question asked by the User.
  */
 @property (nonatomic, strong) NSString * content;
+
+/**
+ * @property languageDefinition
+ * @brief Gets or sets the language the answer is written in.
+ */
+@property (nonatomic, strong) LanguageDefinition * languageDefinition;
 
 /**
  * @property questionUser

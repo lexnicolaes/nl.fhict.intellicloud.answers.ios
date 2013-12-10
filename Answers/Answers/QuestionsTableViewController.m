@@ -42,8 +42,14 @@
     // Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = QuestionTableCellHeight;
     
+    //Present LoginViewController if not logged in
+    if (![[AuthenticationManager sharedClient] checkAutentication])
+    {
+        [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+    }
+    
     // Load questions for view
-    [self reload:nil];
+    //[self reload:nil];
 }
 
 /**
@@ -59,16 +65,18 @@
     {
         if (!error)
         {
-            // Set questions array with retrieved questions
-            self.questions = (NSMutableArray *)questions;
+            // Get questions data, use copy to get NSArray from NSMutableArray
+            _rawData = [questions copy];
             
-            // reload the table
-            [self.tableView reloadData];
+            // Apply predicate
+            [self filterTableWithPredicate];
             
             state = YES;
         }
     }];
-    
+    //_rawData = [Question getDummyData];
+    //_tableData = [_rawData filteredArrayUsingPredicate:_predicate];
+    //[self.tableView reloadData];
     [self.refreshControl endRefreshing];
     
     return state;
@@ -77,7 +85,7 @@
 /**
  * @brief Reloads data for background fetch
  */
-- (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
+/*- (void)reloadForFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
 {
     UIBackgroundFetchResult result = UIBackgroundFetchResultFailed;
     
@@ -87,14 +95,54 @@
     }
     
     completionHandler(result);
-}
+}*/
 
 #pragma mark - Table view data source
+
+/**
+ * Apply the NSPredicate to the table data and reload the table
+ */
+-(void)filterTableWithPredicate
+{
+    if (!_predicate)
+    {
+        // Default predicate when no existing is set
+        _predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+    }
+    
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"creationTime"
+                                        ascending:NO];
+    
+    // Apply predicate
+    _tableData = [[_rawData filteredArrayUsingPredicate:_predicate] sortedArrayUsingDescriptors:@[dateDescriptor]];
+    
+    // Reload the table
+    [self.tableView reloadData];
+}
+
+/**
+ * Apply a NSPredicate to the table data
+ * @param predicate to use
+ */
+- (void)filterTableWithPredicate:(NSPredicate *)predicate
+{
+    // Set predicate
+    _predicate = predicate;
+    
+    [self filterTableWithPredicate];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Count nr of items in questions array
-    return (NSInteger)[_questions count];
+    return (NSInteger)[_tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,22 +151,52 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Get question for this row
-    Question *question = (Question *)[_questions objectAtIndex:indexPath.row];
+    Question *question = (Question *)[_tableData objectAtIndex:indexPath.row];
     
     // Get author label from storyboard
     UILabel *authorLabel = (UILabel *)[cell.contentView viewWithTag:100];
     
-    // Prepare infix, add suffix space when we have a infix
-    NSString *infix = question.questionUser.infix ? [NSString stringWithFormat:@"%@ ", question.questionUser.infix] : nil;
-    
     // Set author label
-    authorLabel.text = [NSString stringWithFormat:@"%@ %@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
+    NSString *authorText = NSLocalizedString(@"Unknown user", nil);
+    if (question.questionUser.firstname != nil && question.questionUser.lastname != nil)
+    {
+        // Prepare infix, add suffix space when we have a infix
+        NSString *infix = question.questionUser.infix != nil ? [NSString stringWithFormat:@" %@ ", question.questionUser.infix] : @" ";
+        authorText = [NSString stringWithFormat:@"%@%@%@", question.questionUser.firstname, infix, question.questionUser.lastname];
+    }
+    else
+    {
+        Source *mailSource = nil;
+        @try
+        {
+            NSPredicate *mailPredicate = [NSPredicate predicateWithFormat:@"sourceDefinition.name == %@", @"Mail"];
+            mailSource = [[question.questionUser.sources filteredArrayUsingPredicate:mailPredicate] firstObject];
+        }
+        @catch (NSException *exception)
+        {
+            NSLog(@"Whups: %@", exception);
+        }
+        @finally
+        {
+            if (mailSource != nil)
+            {
+                authorText = [NSString stringWithFormat:@"<%@>", mailSource.value];
+            }
+        }
+    }
+    authorLabel.text = authorText;
     
     // Get time label from storyboard
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
     
     // Set time label (static for now)
-    timeLabel.text = @"just now";
+    //NSLocale* currentLocale = [NSLocale currentLocale];
+    TTTTimeIntervalFormatter *timeFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    timeLabel.text = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:question.creationTime];
+    NSLog(@"%@", question.creationTime);
+    
+    // Get icon imageview from storyboard
+    //UIImageView *iconImageView = (UIImageView *)[cell.contentView viewWithTag:120];
     
     // Get question label from storyboard
     UILabel *questionLabel = (UILabel *)[cell.contentView viewWithTag:130];
@@ -140,8 +218,10 @@
 // Send the selected question to the QuestionDetailController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     QuestionDetailViewController *questionDetailController = segue.destinationViewController;
-    questionDetailController.selectedQuestion = (Question *)[_questions objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    Question *selectedQuestion = (Question *)[_tableData objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    questionDetailController.selectedQuestion = selectedQuestion;
 }
 
 @end

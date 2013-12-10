@@ -18,13 +18,13 @@
 * @property sourceID
 * @brief Gets or sets the unique indentifier of the source.
 */
-@property (nonatomic, assign) NSInteger * sourceID;
+@property (nonatomic, assign) NSInteger sourceID;
 
 /**
  * @property sourcedefinition
  * @brief Gets or sets the definition of the source for which a value is provided, e.g. email, facebook or twitter.
  */
-@property (nonatomic, strong) SourceDefinition * sourcedefinition;
+@property (nonatomic, strong) SourceDefinition * sourceDefinition;
 
 /**
  * @property value
@@ -36,7 +36,7 @@
  * @property creationtime
  * @brief Gets or sets the creation date and time of the answer.
  */
-@property (nonatomic, strong) NSDate * creationtime;
+@property (nonatomic, strong) NSDate * creationTime;
 
 /**
 * Initialized a User with attributes from a (JSON) dictionary.

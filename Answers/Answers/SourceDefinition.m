@@ -22,12 +22,15 @@
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
 {
     self = [super init];
-    if (!self)
+    if (!self || [attributes isKindOfClass:[NSNull class]])
     {
         return nil;
     }
     
-    //todo: implement parsing
+    self.sourceDefinitionID = [[attributes valueForKeyPath:@"Id"] integerValue];
+    self.name = [attributes valueForKey:@"Name"];
+    self.description = [attributes valueForKey:@"Description"];
+    self.creationTime = [NSDate dateFromDotnetDate:[attributes valueForKey:@"CreationTime"]];
     
     return self;
 }

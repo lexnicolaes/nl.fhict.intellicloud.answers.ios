@@ -20,7 +20,7 @@
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
 {
     self = [super init];
-    if (!self)
+    if (!self || [attributes isKindOfClass:[NSNull class]])
     {
         return nil;
     }
@@ -31,6 +31,7 @@
     self.answerUser = [[User alloc] initWithAttributes:[attributes valueForKey:@"Answerer"]];
     self.questionState = [[attributes valueForKey:@"QuestionState"] integerValue];
     self.sourceType = [[SourceDefinition alloc] initWithAttributes:[attributes valueForKey:@"SourceType"]];
+    self.creationTime = [NSDate dateFromDotnetDate:[attributes valueForKey:@"CreationTime"]];
     
     return self;
 }

@@ -23,7 +23,7 @@
  */
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    // Get rootviewcontroller (tabbar)
+    /*// Get rootviewcontroller (tabbar)
     UITabBarController *rootViewController = (UITabBarController *)self.window.rootViewController;
     
     // Get tableview for selected tab
@@ -38,7 +38,7 @@
     }
     
     // Return failed status when background fetching in unavailable for the current tab
-    completionHandler(UIBackgroundFetchResultFailed);
+    completionHandler(UIBackgroundFetchResultFailed);*/
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
