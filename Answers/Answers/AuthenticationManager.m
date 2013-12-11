@@ -25,6 +25,22 @@
 }
 
 /**
+ * @brief Load authentication object from keychain on reinitialize
+ *
+ */
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        _auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName
+                                                                     clientID:kMyClientID
+                                                                 clientSecret:kMyClientSecret];
+    }
+    return self;
+}
+
+/**
  * @brief check if signed in
  */
 - (BOOL)isSignedIn
