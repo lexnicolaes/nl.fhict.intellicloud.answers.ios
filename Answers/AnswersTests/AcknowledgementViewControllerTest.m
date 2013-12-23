@@ -8,27 +8,48 @@
 
 #import <XCTest/XCTest.h>
 
+#import "AcknowledgementViewController.h"
+
 @interface AcknowledgementViewControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief AcknowledgementViewController for all tests
+ */
+AcknowledgementViewController* vc;
+
 @implementation AcknowledgementViewControllerTest
 
+/**
+ * @brief Set up for all tests on the AcknowledgementViewController class
+ */
 - (void)setUp
 {
+    vc = [[AcknowledgementViewController alloc] init];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the AcknowledgementViewController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize AcknowledgementViewController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the AcknowledgementViewController class.
+ */
 
 @end

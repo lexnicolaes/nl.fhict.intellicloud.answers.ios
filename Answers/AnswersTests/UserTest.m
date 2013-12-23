@@ -8,27 +8,32 @@
 
 #import <XCTest/XCTest.h>
 
+#import "User.h"
+
 @interface UserTest : XCTestCase
 
 @end
 
 @implementation UserTest
 
+/**
+ * @brief Set up for all tests on the User class
+ */
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the User class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
+/*  TODO:
+ *      - (instancetype)initWithAttributes:(NSDictionary *)attributes
+ */
 
 @end

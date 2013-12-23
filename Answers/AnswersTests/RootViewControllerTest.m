@@ -8,27 +8,46 @@
 
 #import <XCTest/XCTest.h>
 
+#import "RootViewController.h"
+
 @interface RootViewControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief RootViewController for all tests
+ */
+RootViewController* vc;
+
 @implementation RootViewControllerTest
 
+/**
+ * @brief Set up for all tests on the RootViewController class
+ */
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the RootViewController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize RootViewController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the RootViewController class.
+ */
 
 @end

@@ -8,27 +8,48 @@
 
 #import <XCTest/XCTest.h>
 
+#import "MainNavigationController.h"
+
 @interface MainNavigationControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief MainNavigationController for all tests
+ */
+MainNavigationController* vc;
+
 @implementation MainNavigationControllerTest
 
+/**
+ * @brief Set up for all tests on the MainNavigationController class
+ */
 - (void)setUp
 {
+    vc = [[MainNavigationController alloc] init];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the MainNavigationController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize MainNavigationController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the MainNavigationController class.
+ */
 
 @end

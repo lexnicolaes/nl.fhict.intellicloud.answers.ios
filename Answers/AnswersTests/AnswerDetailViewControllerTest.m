@@ -8,27 +8,48 @@
 
 #import <XCTest/XCTest.h>
 
+#import "AnswerDetailViewController.h"
+
 @interface AnswerDetailViewControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief AnswerDetailViewController for all tests
+ */
+AnswerDetailViewController* vc;
+
 @implementation AnswerDetailViewControllerTest
 
+/**
+ * @brief Set up for all tests on the AnswerDetailViewController class
+ */
 - (void)setUp
 {
+    vc = [[AnswerDetailViewController alloc] init];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the AnswerDetailViewController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize AnswerDetailViewController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the AnswerDetailViewController class.
+ */
 
 @end

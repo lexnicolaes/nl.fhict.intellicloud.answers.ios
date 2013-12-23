@@ -8,27 +8,62 @@
 
 #import <XCTest/XCTest.h>
 
+#import "Question.h"
+
 @interface QuestionTest : XCTestCase
 
 @end
 
+Question* emptyQuestion;
+
 @implementation QuestionTest
 
+/**
+ * @brief Set up for all tests on the Question class
+ */
 - (void)setUp
 {
+    emptyQuestion = [[Question alloc] initWithAttributes:nil];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the Question class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief Test if question is initialized
+ */
+- (void)testIfEmptyQuestionQuestionIsInitialized
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(emptyQuestion, @"Can't initialize a Question");
 }
+
+/**
+ * @brief Test if get emptyQuestion.languageDefinition is nil.
+ */
+- (void)testGetFromEmptyQuestion
+{
+    XCTAssertNil(emptyQuestion.languageDefinition, @"emptyQuestion.languageDefinition is not nil.");
+}
+
+/**
+ * @brief Test set emptyQuestion.languageDefinition.
+ */
+- (void)testSetFromEmptyQuestion
+{
+    emptyQuestion.languageDefinition = [[LanguageDefinition alloc] initWithAttributes:nil];
+    
+    XCTAssertNotNil(emptyQuestion.languageDefinition, @"emptyQuestion.languageDefinition is nil.");
+}
+
+/*  TODO:
+ *      + (NSURLSessionDataTask *)getQuestionsWithBlock:(void (^)(NSArray *questions, NSError *error))block
+ */
 
 @end

@@ -8,27 +8,48 @@
 
 #import <XCTest/XCTest.h>
 
+#import "QuestionsTableViewController.h"
+
 @interface QuestionsTableViewControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief QuestionsTableViewController for all tests
+ */
+QuestionsTableViewController* vc;
+
 @implementation QuestionsTableViewControllerTest
 
+/**
+ * @brief Set up for all tests on the QuestionsTableViewController class
+ */
 - (void)setUp
 {
+    vc = [[QuestionsTableViewController alloc] init];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the QuestionsTableViewController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize QuestionsTableViewController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the QuestionsTableViewController class.
+ */
 
 @end

@@ -8,27 +8,48 @@
 
 #import <XCTest/XCTest.h>
 
+#import "AboutTableViewController.h"
+
 @interface AboutTableViewControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief AboutTableViewController for all tests
+ */
+AboutTableViewController* vc;
+
 @implementation AboutTableViewControllerTest
 
+/**
+ * @brief Set up for all tests on the AcknowledgementViewController class
+ */
 - (void)setUp
 {
+    vc = [[AboutTableViewController alloc] init];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the AcknowledgementViewController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize AboutTableViewController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the AboutTableViewController class.
+ */
 
 @end

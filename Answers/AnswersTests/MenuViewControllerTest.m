@@ -8,27 +8,48 @@
 
 #import <XCTest/XCTest.h>
 
+#import "MenuViewController.h"
+
 @interface MenuViewControllerTest : XCTestCase
 
 @end
 
+/**
+ * @brief MenuViewController for all tests
+ */
+MenuViewController* vc;
+
 @implementation MenuViewControllerTest
 
+/**
+ * @brief Set up for all tests on the MenuViewController class
+ */
 - (void)setUp
 {
+    vc = [[MenuViewController alloc] init];
+    
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
+/**
+ * @brief Tear down for all tests on the MenuViewController class
+ */
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
+/**
+ * @brief test if vc is initialized
+ */
+- (void)testInitialization
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(vc, @"Can't initialize MenuViewController.");
 }
+
+/*
+ * TODO:
+ * Test all methods from the MenuViewController class.
+ */
 
 @end
