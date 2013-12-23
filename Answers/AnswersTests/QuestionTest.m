@@ -14,6 +14,9 @@
 
 @end
 
+/**
+ * @brief Question object for initialization without attributes test.
+ */
 Question* emptyQuestion;
 
 @implementation QuestionTest
@@ -37,11 +40,11 @@ Question* emptyQuestion;
 }
 
 /**
- * @brief Test if question is initialized
+ * @brief Test if emptyQuestion is initialized
  */
-- (void)testIfEmptyQuestionQuestionIsInitialized
+- (void)testIfEmptyQuestionIsInitialized
 {
-    XCTAssertNotNil(emptyQuestion, @"Can't initialize a Question");
+    XCTAssertNotNil(emptyQuestion, @"Can't initialize a empty Question");
 }
 
 /**

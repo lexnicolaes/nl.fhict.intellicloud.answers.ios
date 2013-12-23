@@ -14,6 +14,11 @@
 
 @end
 
+/**
+ * @brief Source object for initialization without attributes test.
+ */
+Source* emptySource;
+
 @implementation SourceTest
 
 /**
@@ -21,6 +26,8 @@
  */
 - (void)setUp
 {
+    emptySource = [[Source alloc] initWithAttributes:nil];
+    
     [super setUp];
 }
 
@@ -32,8 +39,12 @@
     [super tearDown];
 }
 
-/*  TODO:
- *      - (instancetype)initWithAttributes:(NSDictionary *)attributes
+/**
+ * @brief Test if emptySource is initialized
  */
+- (void)testIfEmptySourceIsInitialized
+{
+    XCTAssertNotNil(emptySource, @"Can't initialize a empty Source.");
+}
 
 @end

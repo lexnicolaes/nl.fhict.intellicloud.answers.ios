@@ -14,6 +14,11 @@
 
 @end
 
+/**
+ * @brief User object for initialization without attributes test.
+ */
+User* emptyUser;
+
 @implementation UserTest
 
 /**
@@ -21,6 +26,8 @@
  */
 - (void)setUp
 {
+    emptyUser = [[User alloc] initWithAttributes:nil];
+    
     [super setUp];
 }
 
@@ -32,8 +39,12 @@
     [super tearDown];
 }
 
-/*  TODO:
- *      - (instancetype)initWithAttributes:(NSDictionary *)attributes
+/**
+ * @brief Test if emptyUser is initialized
  */
+- (void)testIfEmptyUserIsInitialized
+{
+    XCTAssertNotNil(emptyUser, @"Can't initialize a empty User.");
+}
 
 @end

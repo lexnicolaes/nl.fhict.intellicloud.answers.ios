@@ -40,10 +40,11 @@ RootViewController* vc;
 /**
  * @brief test if vc is initialized
  */
-- (void)testInitialization
-{
-    XCTAssertNotNil(vc, @"Can't initialize RootViewController.");
-}
+//TODO
+//- (void)testInitialization
+//{
+//    XCTAssertNotNil(vc, @"Can't initialize RootViewController.");
+//}
 
 /*
  * TODO:

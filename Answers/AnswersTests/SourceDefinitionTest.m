@@ -14,6 +14,11 @@
 
 @end
 
+/**
+ * @brief SourceDefinition object for initialization without attributes test.
+ */
+SourceDefinition* emptySourceDefinition;
+
 @implementation SourceDefinitionTest
 
 /**
@@ -21,6 +26,8 @@
  */
 - (void)setUp
 {
+    emptySourceDefinition = [[SourceDefinition alloc] initWithAttributes:nil];
+    
     [super setUp];
 }
 
@@ -32,8 +39,12 @@
     [super tearDown];
 }
 
-/*  TODO:
- *      - (instancetype)initWithAttributes:(NSDictionary *)attributes
+/**
+ * @brief Test if emptySourceDefinition is initialized
  */
+- (void)testIfEmptySourceDefinitionIsInitialized
+{
+    XCTAssertNotNil(emptySourceDefinition, @"Can't initialize a empty SourceDefinition.");
+}
 
 @end

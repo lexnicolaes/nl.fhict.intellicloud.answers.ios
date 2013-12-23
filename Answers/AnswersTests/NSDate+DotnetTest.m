@@ -40,12 +40,11 @@ NSDateFormatter *dateFormatter;
     
     dateFormatter.dateFormat = @"ss-mm-HH-dd-MMM-yyyy";
     
-    //Initialize date to 0:00 1 January 2007.
-    date = [dateFormatter dateFromString:@"00-00-00-01-Jan-2007"];
+    //Initialize date to 00:18:33 16 December 2013.
+    date = [dateFormatter dateFromString:@"33-18-00-16-Dec-2013"];
     
-    //Initialize dateString to 0:00 1 January 2007.
-    //dateString = @"/Date(1387145913778+0100)/";
-    //TODO
+    //Initialize dateString to 00:18:33 16 December 2013.
+    dateString = @"/Date(1387145913778+0100)/";
     
     [super setUp];
 }
@@ -77,29 +76,42 @@ NSDateFormatter *dateFormatter;
 /**
  * @brief Test if dateString is initialized
  */
-//- (void)testIfDateStringIsInitialized
-//{
-//    XCTAssertNotNil(dateString, @"dateString is nil.");
-//}
+- (void)testIfDateStringIsInitialized
+{
+    XCTAssertNotNil(dateString, @"dateString is nil.");
+}
 
 /**
  * @brief Tests + (NSDate *)dateFromDotnetDate:(NSString *)dateString
  */
-//- (void)testDateFromDotnetDate
-//{
-//    NSDate* leDate = [NSDate dateFromDotnetDate:dateString];
-//    
-//    XCTAssertNotEqualObjects(leDate, date, @"dateFromDotnetDate failed.");
-//}
+- (void)testDateFromDotnetDate
+{
+    NSDate* leDate = [NSDate dateFromDotnetDate:dateString];
+    
+    XCTAssertEqualWithAccuracy([leDate timeIntervalSinceDate:date], 0, 1, @"dateFromDotnetDate failed.");
+}
 
 /**
  * @brief Tests + (NSString *)dotnetDateFromDate:(NSDate *)date
  */
-//- (void)testDotnetDateFromDate
-//{
-//    NSString* leDateString = [NSDate dotnetDateFromDate:date];
-//    
-//    XCTAssertNotEqualObjects(leDateString, dateString, @"dotnetDateFromDate failed.");
-//}
+- (void)testDotnetDateFromDate
+{
+    NSString* leDateString = [NSDate dotnetDateFromDate:date];
+    
+    NSArray* arrayDateString1 = [dateString componentsSeparatedByString:@"("];
+    NSArray* arrayleDateString1 = [leDateString componentsSeparatedByString:@"("];
+    
+    NSArray* arrayDateString2 = [[arrayDateString1 objectAtIndex:1] componentsSeparatedByString:@"+"];
+    NSArray* arrayleDateString2 = [[arrayleDateString1 objectAtIndex:1] componentsSeparatedByString:@")"];
+    
+    NSString* dateS1 = [[NSString alloc] initWithString:[arrayDateString2 objectAtIndex:0]];
+    NSString* dateS2 = [[NSString alloc] initWithString:[arrayleDateString2 objectAtIndex:0]];
+    
+    long long date1 = [dateS1 longLongValue];
+    long long date2 = [dateS2 longLongValue];
+    
+    XCTAssertEqualWithAccuracy(date1, date2, 100000000000, @"dotnetDateFromDate failed.");
+    //TODO: fix
+}
 
 @end

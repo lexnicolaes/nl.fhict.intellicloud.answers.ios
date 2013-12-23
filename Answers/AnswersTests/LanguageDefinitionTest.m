@@ -14,6 +14,11 @@
 
 @end
 
+/**
+ * @brief LanguageDefinition object for initialization without attributes test.
+ */
+LanguageDefinition* emptyLanguageDefinition;
+
 @implementation LanguageDefinitionTest
 
 /**
@@ -21,6 +26,8 @@
  */
 - (void)setUp
 {
+    emptyLanguageDefinition = [[LanguageDefinition alloc] initWithAttributes:nil];
+    
     [super setUp];
 }
 
@@ -32,8 +39,12 @@
     [super tearDown];
 }
 
-/*  TODO:
- *      - (instancetype)initWithAttributes:(NSDictionary *)attributes
+/**
+ * @brief Test if emptyLanguageDefinition is initialized
  */
+- (void)testIfEmptyLanguageDefinitionIsInitialized
+{
+    XCTAssertNotNil(emptyLanguageDefinition, @"Can't initialize a empty LanguageDefinition.");
+}
 
 @end

@@ -14,6 +14,11 @@
 
 @end
 
+/**
+ * @brief Answer object for initialization without attributes test.
+ */
+Answer* emptyAnswer;
+
 @implementation AnswerTest
 
 /**
@@ -21,6 +26,8 @@
  */
 - (void)setUp
 {
+    emptyAnswer = [[Answer alloc] initWithAttributes:nil];
+    
     [super setUp];
 }
 
@@ -32,8 +39,15 @@
     [super tearDown];
 }
 
+/**
+ * @brief Test if emptyAnswer is initialized
+ */
+- (void)testIfEmptyAnswerIsInitialized
+{
+    XCTAssertNotNil(emptyAnswer, @"Can't initialize a empty Answer.");
+}
+
 /*  TODO:
- *      - (instancetype)initWithAttributes:(NSDictionary *)attributes
  *      + (NSURLSessionDataTask *)postAnswerWithParameters:(NSDictionary*) parameters withBlock: (void (^)(NSError *error))block
  */
 
