@@ -58,6 +58,73 @@
 }
 
 /**
+ * @brief get access token
+ */
+-(NSString*) getAccessToken
+{
+    if (self.auth.accessToken == nil)
+    {
+        [self doAnAuthenticatedAPIFetch];
+    }
+    return self.auth.accessToken;
+}
+
+/**
+ * @brief get new access token
+ */
+- (void)doAnAuthenticatedAPIFetch
+{
+    NSString *urlStr = @"https://www.googleapis.com/plus/v1/people/me/activities/public";
+    
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [self.auth authorizeRequest:request completionHandler:^(NSError *error)
+    {
+          NSString *output = nil;
+          if (error)
+          {
+              output = [error description];
+          }
+          else
+          {
+              // Synchronous fetches like this are a really bad idea in Cocoa applications
+              //
+              // For a very easy async alternative, we could use GTMHTTPFetcher
+              NSURLResponse *response = nil;
+              NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                                   returningResponse:&response
+                                                               error:&error];
+              if (data)
+              {
+                  // API fetch succeeded
+                  output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+              }
+              else
+              {
+                  // fetch failed
+                  output = [error description];
+              }
+              
+              //[self displayAlertWithMessage:output];
+          }
+    }];
+}
+
+/**
+ * @brief show allert
+ */
+- (void)displayAlertWithMessage:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Answers"
+                                                     message:message
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+    [alert show];
+}
+
+/**
  * @brief Push a google login view
  */
 - (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc
@@ -134,6 +201,8 @@
 		}
         
 		self.auth = nil;
+        
+        [viewController dismissViewControllerAnimated:YES completion:nil];
 	}
 	else
 	{

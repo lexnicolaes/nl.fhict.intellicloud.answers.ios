@@ -61,4 +61,9 @@ static NSString *const kShouldSaveInKeychainKey = @"shouldSaveInKeychain";
  */
 - (BOOL) checkAutentication;
 
+/**
+ * @brief get accessToken
+ */
+-(NSString*) getAccessToken;
+
 @end
