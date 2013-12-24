@@ -48,5 +48,4 @@
     return _sharedClient;
 }
 
-
 @end
