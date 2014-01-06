@@ -23,18 +23,29 @@
     dispatch_once(&onceToken, ^{
         _sharedClient = [[WebserviceManager alloc] initWithBaseURL:[NSURL URLWithString:WebserviceManagerBaseURLString]];
         
-        NSDictionary *json = @{@"issuer":@"accounts.google.com", @"access_token":[AuthenticationManager sharedClient].auth.accessToken};
+        NSString* accessToken = [[AuthenticationManager sharedClient] getAccessToken];
         
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:&error];
-        
-        NSString* backendToken = [jsonData base64EncodedStringWithOptions:0];
-        
-        [_sharedClient.requestSerializer setValue:backendToken forHTTPHeaderField:@"AuthorizationToken"];
+        if(accessToken != nil)
+        {
+            NSString* accessToken = [AuthenticationManager sharedClient].auth.accessToken;
+            
+            NSDictionary *json = @{@"issuer":@"accounts.google.com", @"access_token":accessToken};
+            
+            NSError *error;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:&error];
+            
+            NSString* backendToken = [jsonData base64EncodedStringWithOptions:0];
+            
+            [_sharedClient.requestSerializer setValue:backendToken forHTTPHeaderField:@"AuthorizationToken"];
+        }
+        else
+        {
+            //TODO: Push login
+            NSLog(@"Cant get access token.");
+        }
     });
     
     return _sharedClient;
 }
-
 
 @end

@@ -87,7 +87,7 @@
  * From: http://simianzombie.com/posts/2012/11/06/yet-another-ios-json-date-parser
  * @param [NSDate] Date to be converted to .net date string
  */
-+ (NSString *)dotnetDateFromdate:(NSDate *)date
++ (NSString *)dotnetDateFromDate:(NSDate *)date
 {
     if (date == nil) return NULL;
     
