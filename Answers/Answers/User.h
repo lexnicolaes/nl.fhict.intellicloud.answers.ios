@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, UserType)
 /**
  * Model representing a User retreived from the Webservice
  */
-@interface User : NSObject
+@interface User : NSObject <NSCoding>
 
 /**
 * @property id

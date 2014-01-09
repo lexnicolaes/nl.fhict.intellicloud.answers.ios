@@ -12,7 +12,7 @@
 /**
  * Model representing the Source instance of a User retreived from the Webservice
  */
-@interface Source : NSObject
+@interface Source : NSObject <NSCoding>
 
 /**
 * @property sourceID

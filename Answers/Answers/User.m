@@ -44,4 +44,25 @@
     return self;
 }
 
+/**
+ * @brief NSCoding interface method for initializing an instance of this class.
+ */
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self == [super init])
+    {
+        // TODO: decode values using the decoder
+    }
+    
+    return self;
+}
+
+/**
+ * @brief NSCoding interface method for encoding the current instance of this class.
+ */
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    // TODO: encode values using the coder
+}
+
 @end
