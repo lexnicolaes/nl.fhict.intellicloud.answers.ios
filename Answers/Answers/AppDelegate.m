@@ -14,7 +14,7 @@
 {
     // Set application background fetch interval
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-
+    
     return YES;
 }
 
