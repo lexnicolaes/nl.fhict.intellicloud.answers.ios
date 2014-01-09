@@ -15,6 +15,11 @@
     // Set application background fetch interval
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
+    /**
+     FOR TESTING PURPOSES (RETRIEVING THE PERSISTENT STORE DATA):
+     PersistentStoreData *persistentStoreData = [PersistentStoreManager sharedClient].persistentStoreData;
+    */
+    
     return YES;
 }
 

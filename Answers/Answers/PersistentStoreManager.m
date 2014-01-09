@@ -49,6 +49,11 @@
     @try
     {
         self.persistentStoreData = [NSKeyedUnarchiver unarchiveObjectWithFile:persistentStoreDataFilePath];
+        
+        // Check if any data is available, otherwise create an empty instance of class PersistentStoreData
+        if (![self.persistentStoreData isKindOfClass:[PersistentStoreData class]])
+            self.persistentStoreData = [[PersistentStoreData alloc] init];
+        
         success = YES;
     }
     @catch (NSException *exception)
@@ -57,7 +62,7 @@
     }
     
     // Log the result
-    NSLog(@"PersistentStoreManager: %@", (success ? @"PersistentStoreData loaded successfully." : @"failed to load PersistentStoreData."));
+    NSLog(@"PersistentStoreManager: %@", (success ? @"data loaded successfully." : @"failed to load data."));
     
     // Return the result
     return success;
@@ -74,7 +79,7 @@
     BOOL success = [NSKeyedArchiver archiveRootObject:self.persistentStoreData toFile:persistentStoreDataFilePath];
     
     // Log the result
-    NSLog(@"PersistentStoreManager: %@", (success ? @"PersistentStoreData saved successfully." : @"failed to save PersistentStoreData."));
+    NSLog(@"PersistentStoreManager: %@", (success ? @"data saved successfully." : @"failed to save data."));
     
     // Return the result
     return success;
