@@ -66,6 +66,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    // Save the persistent store data
+    [[PersistentStoreManager sharedClient] saveData];
 }
 
 @end

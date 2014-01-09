@@ -8,15 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PersistentStoreData.h"
+
 /**
- * File path of the persistent store
+ * Path of the file containing the persistent store data
  */
-static NSString * const PersistentStoreFilePath = @"~/Documents/PersistentStore";
+static NSString * const PersistentStoreDataFilePath = @"~/Documents/PersistentStore";
 
 /**
  * Class for managing the persistent store
  */
 @interface PersistentStoreManager : NSObject
+
+/**
+ * Property that contains an instance of wrapper class PersistentStoreData containing the data in the persistent store
+ */
+@property (nonatomic, strong) PersistentStoreData *persistentStoreData;
 
 /**
  * @brief Get singleton instance of PersistentStore
@@ -25,7 +32,8 @@ static NSString * const PersistentStoreFilePath = @"~/Documents/PersistentStore"
 
 /**
  * @brief Method for saving all data locally
+ * @return Boolean value indicating if the data was saved successfully
  */
-- (BOOL)saveLocally;
+- (BOOL)saveData;
 
 @end
