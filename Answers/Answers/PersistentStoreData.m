@@ -14,6 +14,19 @@
 @implementation PersistentStoreData
 
 /**
+ * @brief Constructor that sets all properties to default values (only used by PersistentStoreManager).
+ */
+- (id)init
+{
+    if (self == [super init])
+    {
+        self.questions = [NSArray array];
+    }
+    
+    return self;
+}
+
+/**
  * @brief NSCoding interface method for initializing an instance of this class.
  */
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -21,7 +34,7 @@
     // Instantiate a new object and decode the values using the decoder
     if (self == [super init])
     {
-        // TODO: Decode the values using the decoder
+        self.questions = [aDecoder decodeObjectForKey:@"Questions"];
     }
     
     // Return the instantiated object
@@ -33,7 +46,7 @@
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    // TODO: Encode the values using the coder
+    [aCoder encodeObject:self.questions forKey:@"Questions"];
 }
 
 @end

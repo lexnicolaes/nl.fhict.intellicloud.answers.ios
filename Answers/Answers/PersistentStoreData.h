@@ -13,6 +13,6 @@
  */
 @interface PersistentStoreData : NSObject <NSCoding>
 
-// TODO: add properties for all data to be persisted
+@property (nonatomic, strong) NSArray *questions;
 
 @end

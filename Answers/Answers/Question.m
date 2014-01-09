@@ -54,15 +54,23 @@
             [mutableQuestions addObject:question];
         }
         
+        // Create a non-mutable array from the parsed questions
+        NSArray *questions = [NSArray arrayWithArray:mutableQuestions];
+        
+        // Persist the retrieved questions
+        [[PersistentStoreManager sharedClient].persistentStoreData setQuestions:questions];
+        
         if (block)
         {
-            block([NSArray arrayWithArray:mutableQuestions], nil);
+            block(questions, nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error)
     {
         if (block)
         {
-            block([NSArray array], error);
+            // Return persisted (cached) questions if the request failed
+            PersistentStoreData *persistentStoreData = [PersistentStoreManager sharedClient].persistentStoreData;
+            block(persistentStoreData.questions, error);
         }
     }];
 }
