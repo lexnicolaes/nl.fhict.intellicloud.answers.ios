@@ -49,11 +49,21 @@
  */
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
+    // Instantiate a new object and decode the values using the decoder
     if (self == [super init])
     {
-        // TODO: decode values using the decoder
+        self.userID = [aDecoder decodeIntegerForKey:@"Id"];
+        self.username = [aDecoder decodeObjectForKey:@"Username"];
+        self.password = [aDecoder decodeObjectForKey:@"Password"];
+        self.firstname = [aDecoder decodeObjectForKey:@"FirstName"];
+        self.infix = [aDecoder decodeObjectForKey:@"Infix"];
+        self.lastname = [aDecoder decodeObjectForKey:@"LastName"];
+        self.sources = [aDecoder decodeObjectForKey:@"Sources"];
+        self.type = [aDecoder decodeIntegerForKey:@"Type"];
+        self.creationTime = [aDecoder decodeObjectForKey:@"CreationTime"];
     }
     
+    // Return the instantiated object
     return self;
 }
 
@@ -62,7 +72,16 @@
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    // TODO: encode values using the coder
+    // Encode the values using the coder
+    [aCoder encodeInteger:self.userID forKey:@"Id"];
+    [aCoder encodeObject:self.username forKey:@"Username"];
+    [aCoder encodeObject:self.password forKey:@"Password"];
+    [aCoder encodeObject:self.firstname forKey:@"FirstName"];
+    [aCoder encodeObject:self.infix forKey:@"Infix"];
+    [aCoder encodeObject:self.lastname forKey:@"LastName"];
+    [aCoder encodeObject:self.sources forKey:@"Sources"];
+    [aCoder encodeInteger:self.type forKey:@"Type"];
+    [aCoder encodeObject:self.creationTime forKey:@"CreationTime"];
 }
 
 @end
