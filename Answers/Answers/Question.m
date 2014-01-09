@@ -72,11 +72,19 @@
  */
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
+    // Instantiate a new object and decode the values using the decoder
     if (self == [super init])
     {
-        // TODO: decode values using the decoder
+        self.questionID = [aDecoder decodeIntegerForKey:@"Id"];
+        self.content = [aDecoder decodeObjectForKey:@"Content"];
+        self.questionUser = [aDecoder decodeObjectForKey:@"User"];
+        self.answerUser = [aDecoder decodeObjectForKey:@"Answerer"];
+        self.questionState = [aDecoder decodeIntegerForKey:@"QuestionState"];
+        self.sourceType = [aDecoder decodeObjectForKey:@"SourceType"];
+        self.creationTime = [aDecoder decodeObjectForKey:@"CreationTime"];
     }
     
+    // Return the instantiated object
     return self;
 }
 
@@ -85,7 +93,14 @@
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    // TODO: encode values using the coder
+    // Encode the values using the coder
+    [aCoder encodeInteger:self.questionID forKey:@"Id"];
+    [aCoder encodeObject:self.content forKey:@"Content"];
+    [aCoder encodeObject:self.questionUser forKey:@"User"];
+    [aCoder encodeObject:self.answerUser forKey:@"Answerer"];
+    [aCoder encodeInteger:self.questionState forKey:@"QuestionState"];
+    [aCoder encodeObject:self.sourceType forKey:@"SourceType"];
+    [aCoder encodeObject:self.creationTime forKey:@"CreationTime"];
 }
 
 @end
