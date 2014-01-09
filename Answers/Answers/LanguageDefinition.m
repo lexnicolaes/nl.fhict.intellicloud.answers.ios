@@ -29,4 +29,32 @@
     return self;
 }
 
+/**
+ * @brief NSCoding interface method for initializing an instance of this class.
+ */
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    // Instantiate a new object and decode the values using the decoder
+    if (self == [super init])
+    {
+        self.languageID = [aDecoder decodeIntegerForKey:@"Id"];
+        self.name = [aDecoder decodeObjectForKey:@"Name"];
+        self.languageCode = [aDecoder decodeObjectForKey:@"LanguageCode"];
+    }
+    
+    // Return the instantiated object
+    return self;
+}
+
+/**
+ * @brief NSCoding interface method for encoding the current instance of this class.
+ */
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    // Encode the values using the coder
+    [aCoder encodeInteger:self.languageID forKey:@"Id"];
+    [aCoder encodeObject:self.name forKey:@"Name"];
+    [aCoder encodeObject:self.languageCode forKey:@"LanguageCode"];
+}
+
 @end
