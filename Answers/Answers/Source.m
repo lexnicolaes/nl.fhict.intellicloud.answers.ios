@@ -38,11 +38,16 @@
  */
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
+    // Instantiate a new object and decode the values using the decoder
     if (self == [super init])
     {
-        // TODO: decode values using the decoder
+        self.sourceID = [aDecoder decodeIntegerForKey:@"Id"];
+        self.sourceDefinition = [aDecoder decodeObjectForKey:@"SourceDefinition"];
+        self.value = [aDecoder decodeObjectForKey:@"Value"];
+        self.creationTime = [aDecoder decodeObjectForKey:@"CreationTime"];
     }
     
+    // Return the instantiated object
     return self;
 }
 
@@ -51,7 +56,11 @@
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    // TODO: encode values using the coder
+    // Encode the values using the coder
+    [aCoder encodeInteger:self.sourceID forKey:@"Id"];
+    [aCoder encodeObject:self.sourceDefinition forKey:@"SourceDefinition"];
+    [aCoder encodeObject:self.value forKey:@"Value"];
+    [aCoder encodeObject:self.creationTime forKey:@"CreationTime"];
 }
 
 @end
