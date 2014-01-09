@@ -42,9 +42,10 @@
     // Variable that contains a boolean value indicating if the data was loaded successfully
     BOOL success = NO;
     
-    // Create the path and attempt to load the persistent store data
+    // Create the path
     NSString *persistentStoreDataFilePath = [PersistentStoreDataFilePath stringByExpandingTildeInPath];
     
+    // Attempt to load the persistent store data
     @try
     {
         self.persistentStoreData = [NSKeyedUnarchiver unarchiveObjectWithFile:persistentStoreDataFilePath];
