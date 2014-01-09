@@ -334,7 +334,6 @@
 		74D4772B183CE9B300D33FC5 /* Answers */ = {
 			isa = PBXGroup;
 			children = (
-				74720E4E187ECCDA00AE013E /* Persistent Store */,
 				3186128F185605A400F352B3 /* Oauth2 */,
 				C6C4FBB918437090005DAA44 /* Categories */,
 				C6CB6D6E183E10E700D34039 /* Models */,
@@ -348,6 +347,7 @@
 				C6CB6D6C183E0F3200D34039 /* WebserviceManager.m */,
 				3166FC721855FF6A0078B350 /* AuthenticationManager.h */,
 				3166FC731855FF6A0078B350 /* AuthenticationManager.m */,
+				74720E4E187ECCDA00AE013E /* Persistent Store */,
 			);
 			path = Answers;
 			sourceTree = "<group>";
