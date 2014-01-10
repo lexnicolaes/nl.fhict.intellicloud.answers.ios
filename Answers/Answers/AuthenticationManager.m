@@ -135,6 +135,26 @@
 }
 
 /**
+ * @brief Push a google login view with handler
+ */
+- (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc completion:(void (^)(void))completion
+{
+	_lastVC = vc;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        // Some long running task you want on another thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    });
+    
+	[self signInToGoogle];
+}
+
+/**
  * @brief Sign out from google
  */
 - (void)signOut
@@ -163,7 +183,7 @@
 	// Display the autentication view.
 	SEL finishedSel = @selector(viewController:finishedWithAuth:error:);
     
-	GTMOAuth2ViewControllerTouch *viewController = [GTMOAuth2ViewControllerTouch controllerWithScope:kMyClientScope
+	self.viewController = [GTMOAuth2ViewControllerTouch controllerWithScope:kMyClientScope
 															  clientID:kMyClientID
 														  clientSecret:kMyClientSecret
 													  keychainItemName:kKeychainItemName
@@ -172,12 +192,21 @@
     
 	// Display some html briefly before the sign-in page loads
 	NSString *html = [NSString stringWithFormat:@"<html><body style=\"background-color:#ffffff;font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;font-weight: 300;\"><div style=\"text-align:center;margin-top:64px;\">%@</div></body></html>", NSLocalizedString(@"Loading...", @"Text to show when login screen is loading.")];
-	viewController.initialHTMLString = html;
+	self.viewController.initialHTMLString = html;
     
-	viewController.title = NSLocalizedString(@"Login with Google", nil);
+	self.viewController.title = NSLocalizedString(@"Login with Google", nil);
     
-	UINavigationController *loginNavigationController = [[MainNavigationController alloc] initWithRootViewController:viewController];
+    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(close:)];
+    self.viewController.navigationItem.leftBarButtonItem = closeButton;
+    
+	UINavigationController *loginNavigationController = [[MainNavigationController alloc] initWithRootViewController:self.viewController];
+    
 	[_lastVC presentViewController:loginNavigationController animated:YES completion:nil];
+}
+
+- (IBAction)close:(id)sender
+{
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**
@@ -207,6 +236,11 @@
 	else
 	{
 		// Authentication succeeded
+        
+        // Run completion handler
+        if (self.onCompletion) {
+            self.onCompletion();
+        }
         
 		// Save the authentication object
 		self.auth = auth;

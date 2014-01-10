@@ -25,6 +25,12 @@ static NSString *const kShouldSaveInKeychainKey = @"shouldSaveInKeychain";
 @interface AuthenticationManager : NSObject
 
 /**
+ * @property onCompletion
+ * @brief Save onCompletion.
+ */
+@property (nonatomic, copy) void (^onCompletion)(void);
+
+/**
  * @property lastVC
  * @brief Save the vc to push the google login to it.
  */
@@ -37,6 +43,13 @@ static NSString *const kShouldSaveInKeychainKey = @"shouldSaveInKeychain";
 @property (nonatomic, strong) GTMOAuth2Authentication* auth;
 
 /**
+ * @property viewController
+ * @brief View controller
+ */
+@property (strong, nonatomic) GTMOAuth2ViewControllerTouch *viewController;
+
+
+/**
  * @brief Get singleton instance of AuthenticationManager
  */
 + (instancetype)sharedClient;
@@ -45,6 +58,11 @@ static NSString *const kShouldSaveInKeychainKey = @"shouldSaveInKeychain";
  * @brief Push a google login view over vc
  */
 - (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc;
+
+/**
+ * @brief Push a google login view over vc with handler
+ */
+- (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc completion:(void (^)(void))completion;
 
 /**
  * @brief Sign out from google
