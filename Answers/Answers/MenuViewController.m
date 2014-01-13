@@ -85,6 +85,15 @@
     // Set name for for authenticated user
     // todo: retrieve dynamically from AuthenticationManager or backend
     _currentUserLabel.text = @"Steven Paul Jobs";
+    
+    //Present LoginViewController if not logged in
+    if (![[AuthenticationManager sharedClient] checkAutentication])
+    {
+        UIViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+        if (IS_IPAD) {
+            [self.splitViewController presentViewController:vc animated:NO completion:nil];
+        }
+    }
 }
 
 #pragma mark -
