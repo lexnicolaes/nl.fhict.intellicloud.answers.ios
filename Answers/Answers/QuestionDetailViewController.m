@@ -20,7 +20,9 @@
     
     //Localize the title
     self.title = NSLocalizedString(@"AnswerQuestion", nil);
-    
+	
+    NSLog(@"TEST 123: %@", _selectedQuestion);
+	
     //Localize the labels
     _questionLabel.text = [NSLocalizedString(@"TheQuestion", nil) uppercaseString];
     _answerLabel.text = [NSLocalizedString(@"Answer", nil) uppercaseString];

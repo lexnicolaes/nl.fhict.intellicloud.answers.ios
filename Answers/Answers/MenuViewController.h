@@ -13,6 +13,8 @@
 
 #import "AuthenticationManager.h"
 
+@class QuestionsTableViewController;
+
 /**
  * TableViewCell height for menu
  */
@@ -33,5 +35,7 @@ static CGFloat const MenuTableCellHeight = 46.0f;
  * @brief IBOutlet of label with the name of the logged in user
  */
 @property (strong, nonatomic) IBOutlet UILabel *currentUserLabel;
+
+@property (strong, nonatomic) QuestionsTableViewController *detailViewController;
 
 @end

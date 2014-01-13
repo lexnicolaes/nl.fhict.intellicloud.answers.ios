@@ -18,8 +18,11 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu:)];
-    self.navigationItem.leftBarButtonItem = menuButton;
+	if(IS_IPHONE)
+	{
+		UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu:)];
+		self.navigationItem.leftBarButtonItem = menuButton;
+	}
 }
 
 - (void)showMenu:(id)sender

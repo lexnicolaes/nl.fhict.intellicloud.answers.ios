@@ -13,6 +13,7 @@
 #import "Question.h"
 #import "Source.h"
 #import "QuestionDetailViewController.h"
+#import "AnswerDetailViewController.h"
 #import "AuthenticationManager.h"
 
 NS_ENUM(NSUInteger, webServiceDataState)
@@ -27,10 +28,14 @@ NS_ENUM(NSUInteger, webServiceDataState)
  */
 static CGFloat const QuestionTableCellHeight = 82.0f;
 
+@class AnswerDetailViewController;
+
 /**
  * TableView for holding questions
  */
 @interface QuestionsTableViewController : BaseTableViewController
+
+@property (strong, nonatomic) AnswerDetailViewController *answerDetailViewController;
 
 /**
  * @property tableData
@@ -62,5 +67,10 @@ static CGFloat const QuestionTableCellHeight = 82.0f;
  * @param predicate to use
  */
 - (void)filterTableWithPredicate:(NSPredicate *)predicate;
+
+/**
+  * PopOverController for iPad menu
+ */
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
