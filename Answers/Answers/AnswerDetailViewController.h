@@ -11,7 +11,7 @@
 #import "WebserviceManager.h"
 #import "Answer.h"
 
-@interface AnswerDetailViewController : UIViewController
+@interface AnswerDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 /**
  * @property sendAnswer
@@ -60,6 +60,12 @@
  * @brief A property for the answerPlaceholderLabel to mimic the placeholder effect.
  */
 @property (strong, nonatomic) IBOutlet UILabel *answerPlaceholderLabel;
+
+/**
+ * @property barItem
+ * @brief A bar button item for the menu on iPad
+ */
+@property (strong, nonatomic) UIBarButtonItem *barItem;
 
 /**
  * Action to send answer

@@ -15,10 +15,19 @@
 
 @implementation MenuViewController
 
+- (void)awakeFromNib
+{
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+	    self.clearsSelectionOnViewWillAppear = NO;
+	    self.preferredContentSize = CGSizeMake(320.0, 600.0);
+	}
+    [super awakeFromNib];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	
     // Setup table data
     _menuItems = @[
                    @[
@@ -31,9 +40,31 @@
                        @{@"title": NSLocalizedString(@"About IntelliCloud", nil), @"icon": @"", @"id": @"aboutViewController"}],  ///rename id to storyboard id?
                    @[
                        @{@"title": NSLocalizedString(@"Sign out", nil), @"icon": @"MenuIconSignOut", @"action": @"inboxViewController"}]];  //implement action
-    
+	
     // TableView settings
-    self.tableView.backgroundColor = [UIColor clearColor];
+	
+	// Different backgroundColor for iPhone and iPad
+	if(IS_IPHONE)
+	{
+		// Set background color to clear
+		self.tableView.backgroundColor = [UIColor clearColor];
+	}
+	else if(IS_IPAD)
+	{
+		// Set title of master part in SplitViewController
+		self.title = @"IntelliCloud";
+		
+		// Clear background color of tableView
+		self.tableView.backgroundColor = [UIColor clearColor];
+		
+		// Create UIImage for menu background
+		UIImage *menuBackgroundImage = [UIImage imageNamed:@"MenuBackgroundiPad"];
+		
+		self.parentViewController.view.backgroundColor = [UIColor colorWithPatternImage:menuBackgroundImage];
+		
+		self.detailViewController = (QuestionsTableViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+	}
+	
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.bounces = YES;
     self.tableView.scrollsToTop = NO;
@@ -61,68 +92,100 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// Deselect row
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // Get data item for this row
-    NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
-    // Get navigation controller for sliding menu
-    UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
+	if(IS_IPHONE)
+	{
+		// Deselect row
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		
+		// Get data item for this row
+		NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+		
+		// Get navigation controller for sliding menu
+		UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
+		
+		// Get root view of navigation controller
+		UIViewController *rootView = navigationController.viewControllers[0];
+		
+		//NSStringFromClass([)
+		
+		
+		// Check for @vc property... current vc == target vc do nothing, else make a new one and push it
+		
+		// press logout? do it
+		if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"About IntelliCloud", nil)])
+		{
+			navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"]];
+		}
+		// press logout? do it
+		else if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
+		{
+			[[AuthenticationManager sharedClient] signOut];
+			[[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+		}
+		// do we have a @predicate? set it
+		else if ([rootView respondsToSelector:@selector(filterTableWithPredicate:)] && [[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
+		{
+			NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
+			QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)rootView;
+			[questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
+		}
+		
+		// do we have an action? run it
+		
+		// set title, maybe check for @nav_title property first?
+		rootView.title = (NSString *)[itemForRow objectForKey:@"title"];
+		
+		// we just assume there is one "special" property in the data source
+		
+		// Get item for this row
+		//NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+		// Instantiate vc from the storyboard using id from datasource
+		//navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
+		/*NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+		 
+		 if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
+		 {
+		 [[AuthenticationManager sharedClient] signOut];
+		 [[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+		 }
+		 else
+		 {
+		 // Instantiate vc from the storyboard using id from datasource
+		 navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
+		 }*/
+		
+		// Hide the side menu
+		[self.sideMenuViewController hideMenuViewController];
+	}
 	
-    // Get root view of navigation controller
-    UIViewController *rootView = navigationController.viewControllers[0];
-
-    //NSStringFromClass([)
-    
-    
-    // Check for @vc property... current vc == target vc do nothing, else make a new one and push it
-    
-    // press logout? do it
-    if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"About IntelliCloud", nil)])
-    {
-        navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"]];
-    }
-    // press logout? do it
-    else if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
-    {
-        [[AuthenticationManager sharedClient] signOut];
-        [[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
-    }
-    // do we have a @predicate? set it
-    else if ([rootView respondsToSelector:@selector(filterTableWithPredicate:)] && [[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
-    {
-        NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
-        QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)rootView;
-        [questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
-    }
-    
-    // do we have an action? run it
-    
-    // set title, maybe check for @nav_title property first?
-    rootView.title = (NSString *)[itemForRow objectForKey:@"title"];
-    
-    // we just assume there is one "special" property in the data source
-    
-	// Get item for this row
-    //NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-	// Instantiate vc from the storyboard using id from datasource
-    //navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
-    /*NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
-    if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
-    {
-        [[AuthenticationManager sharedClient] signOut];
-        [[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
-    }
-    else
-    {
-        // Instantiate vc from the storyboard using id from datasource
-        navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:[itemForRow valueForKey:@"id"]]];
-	}*/
-	
-	// Hide the side menu
-    [self.sideMenuViewController hideMenuViewController];
+	if(IS_IPAD)
+	{
+		// Deselect row
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		
+		// Get data item for this row
+		/*NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+		
+		// Get navigation controller for sliding menu
+		//UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
+		
+		// Get root view of navigation controller
+		//UIViewController *rootView = navigationController.viewControllers[0];
+		
+		NSLog(@"BLAAT: %@", itemForRow);
+		
+		NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
+		
+		//QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)self.detailViewController;
+		//[questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
+		
+		[self.detailViewController filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
+		
+		// do we have an action? run it
+		
+		// set title, maybe check for @nav_title property first?
+		self.detailViewController.title = (NSString *)[itemForRow objectForKey:@"title"];*/
+	}
 }
 
 #pragma mark -
@@ -151,6 +214,8 @@
 	cellBackgroundView.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.3];
 	// Set custom view to selectedBackgroundView
 	cell.selectedBackgroundView = cellBackgroundView;
+	// Set cell background color to clear
+	cell.backgroundColor = [UIColor clearColor];
 	
 	// Get item for this row from datasource
 	NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -178,6 +243,21 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+// Send to the QuestionsTableViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    QuestionsTableViewController *questionDetailController = segue.destinationViewController;
+	
+	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	
+	NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+	NSLog(@"ITEM: %@", itemForRow);
+	[questionDetailController filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
+	
+	questionDetailController.title = (NSString *)[itemForRow objectForKey:@"title"];
+	
 }
 
 @end

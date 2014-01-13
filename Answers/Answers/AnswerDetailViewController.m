@@ -10,6 +10,8 @@
 
 @interface AnswerDetailViewController () <UITextViewDelegate>
 
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
 @end
 
 @implementation AnswerDetailViewController
@@ -18,18 +20,21 @@
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [super viewDidLoad];
-    
+	
+	// Set splitViewController delegate to self (for iPad splitView)
+	self.splitViewController.delegate = self;
+	
     //Localize the title
     self.title = NSLocalizedString(@"Answer", nil);
     
     // Set questionLabel localized string
     _questionLabel.text = [NSLocalizedString(@"Question", nil) uppercaseString];
     
-    _questionTextbox.text = _selectedQuestion.content;
-    
     // Set answerLabel localized string
     _answerLabel.text = [NSLocalizedString(@"Answer", nil) uppercaseString];
     
+    _questionTextbox.text = _selectedQuestion.content;
+	
     //Localize the sendAnswer button and set the styling color
     [_sendAnswer setTitle:NSLocalizedString(@"SendAnswer", nil) forState:UIControlStateNormal];
     [_sendAnswer setTitleColor:[UIColor buttonLabelTextColor] forState:UIControlStateNormal];
@@ -42,7 +47,6 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:_answerTextbox action:@selector(resignFirstResponder)];
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     toolbar.items = [NSArray arrayWithObject:barButton];
-    
     _answerTextbox.inputAccessoryView = toolbar;
     
     //Set answerTextView delegate to self to mimic placeholder effect
@@ -50,6 +54,10 @@
     
     //Localize placeholder text
     _answerPlaceholderLabel.text = NSLocalizedString(@"WriteAnswerHere", nil);
+	
+	if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 /**
@@ -104,6 +112,22 @@
 - (IBAction)reviewByColleagueClick:(id)sender
 {
     //todo: add action for colleague review
+}
+#pragma mark - Split view
+
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+	// Bar button item for menu
+	barButtonItem.title = NSLocalizedString(@"Menu", @"Menu");
+	[self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+	self.masterPopoverController = popoverController;
+}
+ 
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+	// Called when the view is shown again in the split view, invalidating the button and popover controller.
+	[self.navigationItem setLeftBarButtonItem:nil animated:YES];
+	self.masterPopoverController = nil;
 }
 
 @end

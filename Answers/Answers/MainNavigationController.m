@@ -7,6 +7,7 @@
 //
 
 #import "MainNavigationController.h"
+#import "QuestionsTableViewController.h"
 
 @interface MainNavigationController ()
 
