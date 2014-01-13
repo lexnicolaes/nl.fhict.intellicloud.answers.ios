@@ -54,17 +54,61 @@
             [mutableQuestions addObject:question];
         }
         
+        // Create a non-mutable array from the parsed questions
+        NSArray *questions = [NSArray arrayWithArray:mutableQuestions];
+        
+        // Persist the retrieved questions
+        [[PersistentStoreManager sharedClient].persistentStoreData setQuestions:questions];
+        
         if (block)
         {
-            block([NSArray arrayWithArray:mutableQuestions], nil);
+            block(questions, nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error)
     {
         if (block)
         {
-            block([NSArray array], error);
+            // Return persisted (cached) questions if the request failed
+            PersistentStoreData *persistentStoreData = [PersistentStoreManager sharedClient].persistentStoreData;
+            block(persistentStoreData.questions, error);
         }
     }];
+}
+
+/**
+ * @brief NSCoding interface method for initializing an instance of this class.
+ */
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    // Instantiate a new object and decode the values using the decoder
+    if (self == [super init])
+    {
+        self.questionID = [aDecoder decodeIntegerForKey:@"Id"];
+        self.content = [aDecoder decodeObjectForKey:@"Content"];
+        self.questionUser = [aDecoder decodeObjectForKey:@"User"];
+        self.answerUser = [aDecoder decodeObjectForKey:@"Answerer"];
+        self.questionState = [aDecoder decodeIntegerForKey:@"QuestionState"];
+        self.sourceType = [aDecoder decodeObjectForKey:@"SourceType"];
+        self.creationTime = [aDecoder decodeObjectForKey:@"CreationTime"];
+    }
+    
+    // Return the instantiated object
+    return self;
+}
+
+/**
+ * @brief NSCoding interface method for encoding the current instance of this class.
+ */
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    // Encode the values using the coder
+    [aCoder encodeInteger:self.questionID forKey:@"Id"];
+    [aCoder encodeObject:self.content forKey:@"Content"];
+    [aCoder encodeObject:self.questionUser forKey:@"User"];
+    [aCoder encodeObject:self.answerUser forKey:@"Answerer"];
+    [aCoder encodeInteger:self.questionState forKey:@"QuestionState"];
+    [aCoder encodeObject:self.sourceType forKey:@"SourceType"];
+    [aCoder encodeObject:self.creationTime forKey:@"CreationTime"];
 }
 
 @end

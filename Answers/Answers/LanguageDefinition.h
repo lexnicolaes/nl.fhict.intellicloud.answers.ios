@@ -12,7 +12,7 @@
  * Model for representing a language, e.g. 'Dutch' or 'English'.
  * Note: this could be replaced with NSLocale
  */
-@interface LanguageDefinition : NSObject
+@interface LanguageDefinition : NSObject <NSCoding>
 
 /**
  * @property languageID

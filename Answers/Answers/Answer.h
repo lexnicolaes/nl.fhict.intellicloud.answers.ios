@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, AnswerState)
 /**
  * Model for representing an Answer to a Question retreived from the Webservice
  */
-@interface Answer : NSObject
+@interface Answer : NSObject <NSCoding>
 
 /**
  * @property answerID

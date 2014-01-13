@@ -14,7 +14,7 @@
  * A SourceDefinition defines a Source. A Source can be a account for some service,
  * like facebook, twitter or email.
  */
-@interface SourceDefinition : NSObject
+@interface SourceDefinition : NSObject <NSCoding>
 
 /**
 * @property sourceDefinitionID

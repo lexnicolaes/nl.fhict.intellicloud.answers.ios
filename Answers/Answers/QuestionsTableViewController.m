@@ -64,16 +64,13 @@
     // retrieve data from webservice
     [Question getQuestionsWithBlock:^(NSArray *questions, NSError *error)
     {
-        if (!error)
-        {
-            // Get questions data, use copy to get NSArray from NSMutableArray
-            _rawData = [questions copy];
+        // Get questions data, use copy to get NSArray from NSMutableArray
+        _rawData = [questions copy];
             
-            // Apply predicate
-            [self filterTableWithPredicate];
+        // Apply predicate
+        [self filterTableWithPredicate];
             
-            state = YES;
-        }
+        state = !error;
     }];
     //_rawData = [Question getDummyData];
     //_tableData = [_rawData filteredArrayUsingPredicate:_predicate];

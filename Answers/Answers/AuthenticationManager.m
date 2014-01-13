@@ -58,11 +58,98 @@
 }
 
 /**
+ * @brief get access token
+ */
+-(NSString*) getAccessToken
+{
+    if (self.auth.accessToken == nil)
+    {
+        [self doAnAuthenticatedAPIFetch];
+    }
+    return self.auth.accessToken;
+}
+
+/**
+ * @brief get new access token
+ */
+- (void)doAnAuthenticatedAPIFetch
+{
+    NSString *urlStr = @"https://www.googleapis.com/plus/v1/people/me/activities/public";
+    
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [self.auth authorizeRequest:request completionHandler:^(NSError *error)
+    {
+          NSString *output = nil;
+          if (error)
+          {
+              output = [error description];
+          }
+          else
+          {
+              // Synchronous fetches like this are a really bad idea in Cocoa applications
+              //
+              // For a very easy async alternative, we could use GTMHTTPFetcher
+              NSURLResponse *response = nil;
+              NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                                   returningResponse:&response
+                                                               error:&error];
+              if (data)
+              {
+                  // API fetch succeeded
+                  output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+              }
+              else
+              {
+                  // fetch failed
+                  output = [error description];
+              }
+              
+              //[self displayAlertWithMessage:output];
+          }
+    }];
+}
+
+/**
+ * @brief show allert
+ */
+- (void)displayAlertWithMessage:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Answers"
+                                                     message:message
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+    [alert show];
+}
+
+/**
  * @brief Push a google login view
  */
 - (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc
 {
 	_lastVC = vc;
+    
+	[self signInToGoogle];
+}
+
+/**
+ * @brief Push a google login view with handler
+ */
+- (void) pushGoogleLoginViewControllerTo:(UIViewController*) vc completion:(void (^)(void))completion
+{
+	_lastVC = vc;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        // Some long running task you want on another thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    });
     
 	[self signInToGoogle];
 }
@@ -96,7 +183,7 @@
 	// Display the autentication view.
 	SEL finishedSel = @selector(viewController:finishedWithAuth:error:);
     
-	GTMOAuth2ViewControllerTouch *viewController = [GTMOAuth2ViewControllerTouch controllerWithScope:kMyClientScope
+	self.viewController = [GTMOAuth2ViewControllerTouch controllerWithScope:kMyClientScope
 															  clientID:kMyClientID
 														  clientSecret:kMyClientSecret
 													  keychainItemName:kKeychainItemName
@@ -105,12 +192,21 @@
     
 	// Display some html briefly before the sign-in page loads
 	NSString *html = [NSString stringWithFormat:@"<html><body style=\"background-color:#ffffff;font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;font-weight: 300;\"><div style=\"text-align:center;margin-top:64px;\">%@</div></body></html>", NSLocalizedString(@"Loading...", @"Text to show when login screen is loading.")];
-	viewController.initialHTMLString = html;
+	self.viewController.initialHTMLString = html;
     
-	viewController.title = NSLocalizedString(@"Login with Google", nil);
+	self.viewController.title = NSLocalizedString(@"Login with Google", nil);
     
-	UINavigationController *loginNavigationController = [[MainNavigationController alloc] initWithRootViewController:viewController];
+    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(close:)];
+    self.viewController.navigationItem.leftBarButtonItem = closeButton;
+    
+	UINavigationController *loginNavigationController = [[MainNavigationController alloc] initWithRootViewController:self.viewController];
+    
 	[_lastVC presentViewController:loginNavigationController animated:YES completion:nil];
+}
+
+- (IBAction)close:(id)sender
+{
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**
@@ -134,10 +230,17 @@
 		}
         
 		self.auth = nil;
+        
+        [viewController dismissViewControllerAnimated:YES completion:nil];
 	}
 	else
 	{
 		// Authentication succeeded
+        
+        // Run completion handler
+        if (self.onCompletion) {
+            self.onCompletion();
+        }
         
 		// Save the authentication object
 		self.auth = auth;
