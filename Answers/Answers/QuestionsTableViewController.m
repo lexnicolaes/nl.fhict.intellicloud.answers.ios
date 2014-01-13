@@ -43,10 +43,13 @@
     // Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = QuestionTableCellHeight;
     
-    //Present LoginViewController if not logged in
-    if (![[AuthenticationManager sharedClient] checkAutentication])
+    if (IS_IPHONE)
     {
-        [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+        //Present LoginViewController if not logged in
+        if (![[AuthenticationManager sharedClient] checkAutentication])
+        {
+            [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+        }
     }
     
     // Load questions for view

@@ -141,11 +141,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MenuBackground" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-Wf-uHc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuBackground" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-Wf-uHc">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hL3-v0-3xF">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hL3-v0-3xF">
                                 <rect key="frame" x="287" y="299" width="194" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
@@ -165,12 +165,20 @@
                                     <action selector="loginButtonClick:" destination="YRB-hw-Ylh" eventType="touchUpInside" id="Gnz-TT-fRq"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="BFf-08-uJn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="LogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="BFf-08-uJn">
                                 <rect key="frame" x="257" y="90" width="255" height="192"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="BFf-08-uJn" secondAttribute="centerX" id="0zg-l1-X72"/>
+                            <constraint firstItem="rSi-Wf-uHc" firstAttribute="top" secondItem="utS-Np-sDE" secondAttribute="top" id="DMP-ov-Jp6"/>
+                            <constraint firstAttribute="centerX" secondItem="hL3-v0-3xF" secondAttribute="centerX" id="O9M-L5-6k0"/>
+                            <constraint firstItem="s1x-Ea-0K5" firstAttribute="top" secondItem="rSi-Wf-uHc" secondAttribute="bottom" id="WeY-b7-GuW"/>
+                            <constraint firstItem="rSi-Wf-uHc" firstAttribute="leading" secondItem="utS-Np-sDE" secondAttribute="leading" id="akW-AK-ZeC"/>
+                            <constraint firstAttribute="trailing" secondItem="rSi-Wf-uHc" secondAttribute="trailing" id="bHg-Bd-N6u"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="hL3-v0-3xF" id="RBd-Qz-XKg"/>

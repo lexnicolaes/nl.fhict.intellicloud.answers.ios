@@ -218,20 +218,20 @@
 	{
 		// Authentication failed
         
-		NSLog(@"Authentication error: %@", error);
+		//NSLog(@"Authentication error: %@", error);
         
-		NSData *responseData = [[error userInfo] objectForKey:@"data"];
-        
-		if ([responseData length] > 0)
-		{
-			// Log the body of the server's authentication failure response
-			NSString *str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-			NSLog(@"%@", str);
-		}
+//		NSData *responseData = [[error userInfo] objectForKey:@"data"];
+//        
+//		if ([responseData length] > 0)
+//		{
+//			// Log the body of the server's authentication failure response
+//			NSString *str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//			NSLog(@"%@", str);
+//		}
         
 		self.auth = nil;
         
-        [viewController dismissViewControllerAnimated:YES completion:nil];
+//        [viewController dismissViewControllerAnimated:YES completion:nil];
 	}
 	else
 	{
