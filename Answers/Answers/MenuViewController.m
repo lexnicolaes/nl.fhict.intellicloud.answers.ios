@@ -87,10 +87,11 @@
     _currentUserLabel.text = @"Steven Paul Jobs";
     
     //Present LoginViewController if not logged in
-    if (![[AuthenticationManager sharedClient] checkAutentication])
+    if (IS_IPAD)
     {
-        UIViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
-        if (IS_IPAD) {
+        if (![[AuthenticationManager sharedClient] checkAutentication])
+        {
+            UIViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
             [self.splitViewController presentViewController:vc animated:NO completion:nil];
         }
     }
