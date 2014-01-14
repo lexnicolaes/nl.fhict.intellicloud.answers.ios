@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7V-Os-Qxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-719" y="-136"/>
+            <point key="canvasLocation" x="-756" y="280"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="TS4-jX-Hm9">
@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h19-BU-ae7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="551" y="1116"/>
+            <point key="canvasLocation" x="192" y="280"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="aPd-18-h6Q">
@@ -186,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SgD-SY-e09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1539" y="1116"/>
+            <point key="canvasLocation" x="1136" y="280"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="kbV-hQ-rnh">
@@ -253,7 +253,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ln8-Gb-AEZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2523" y="1116"/>
+            <point key="canvasLocation" x="2079" y="280"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="Fbq-jf-dsu">
@@ -333,9 +333,6 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="6BZ-XO-YR6" kind="push" identifier="menuToQuestionsSegue" id="6Xh-sz-cJt"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -359,16 +356,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="questionsViewController" id="6BZ-XO-YR6" customClass="QuestionsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" id="XaU-nb-rU6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="QuestionCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionCell" rowHeight="85" id="izq-Lr-kt0">
-                                <rect key="frame" x="0.0" y="86" width="320" height="85"/>
+                                <rect key="frame" x="0.0" y="22" width="768" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="izq-Lr-kt0" id="Oq0-RN-TIf">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bram Kersten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5a-59-Kuk">
@@ -438,7 +434,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTn-ry-kYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164" y="-1388"/>
+            <point key="canvasLocation" x="192" y="-1115"/>
+        </scene>
+        <!--Acknowledgement View Controller-->
+        <scene sceneID="aoe-m6-Rcq">
+            <objects>
+                <viewController storyboardIdentifier="aboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wai-7e-rvR" customClass="AcknowledgementViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u8U-JQ-oie"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dzm-U2-yAL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rNz-ox-2K3">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="rif-os-RtF">
+                                <rect key="frame" x="252" y="70" width="264" height="192"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lir-JO-MUs">
+                                <rect key="frame" x="158" y="270" width="453" height="134"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">IntelliCloud is een systeem welke vragen van klanten beantwoord middels een automatisch systeem. Vragen die niet in het systeem staan worden beantwoord door medewerkers van het desbetreffende bedrijf. Volg ons ook op Facebook en Twitter.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0m-5l-h7I">
+                                <rect key="frame" x="69" y="436" width="630" height="531"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="rif-os-RtF" secondAttribute="centerX" id="3Lg-YR-oN1"/>
+                            <constraint firstItem="g0m-5l-h7I" firstAttribute="top" secondItem="rNz-ox-2K3" secondAttribute="top" constant="436" id="3gF-g9-gpb"/>
+                            <constraint firstAttribute="bottom" secondItem="g0m-5l-h7I" secondAttribute="bottom" constant="57" id="EqR-yh-ubY"/>
+                            <constraint firstAttribute="centerX" secondItem="Lir-JO-MUs" secondAttribute="centerX" id="Y8l-uZ-SCl"/>
+                            <constraint firstAttribute="centerX" secondItem="g0m-5l-h7I" secondAttribute="centerX" id="cQm-X5-gp3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoTextView" destination="g0m-5l-h7I" id="S2B-Dk-z90"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hgd-dk-jC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1136" y="-1114"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="D1T-oq-WZj">
@@ -450,11 +496,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WjQ-AB-sij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1646" y="-8"/>
+            <point key="canvasLocation" x="-1622" y="280"/>
         </scene>
     </scenes>
     <resources>
         <image name="GreyCloud" width="445" height="273"/>
+        <image name="Logo" width="256" height="192"/>
         <image name="LogoWhite" width="256" height="192"/>
         <image name="MenuBackground" width="320" height="568"/>
     </resources>

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AcknowledgementViewController : UIViewController
+@interface AcknowledgementViewController : UIViewController <UISplitViewControllerDelegate>
 
 /**
  * @property infoTextView

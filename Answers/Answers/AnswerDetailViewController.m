@@ -47,6 +47,7 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:_answerTextbox action:@selector(resignFirstResponder)];
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     toolbar.items = [NSArray arrayWithObject:barButton];
+	toolbar.tintColor = [UIColor navigationBarTintColor];
     _answerTextbox.inputAccessoryView = toolbar;
     
     //Set answerTextView delegate to self to mimic placeholder effect
