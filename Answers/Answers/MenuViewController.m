@@ -157,8 +157,15 @@
 			[[navigationController.viewControllers objectAtIndex:0] presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
 		}
 		// do we have a @predicate? set it
-		else if ([rootView respondsToSelector:@selector(filterTableWithPredicate:)] && [[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
+		else if ([[itemForRow objectForKey:@"predicate"] isKindOfClass:[NSPredicate class]])
 		{
+            if (![rootView respondsToSelector:@selector(filterTableWithPredicate:)])
+            {
+                navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"questionsViewController"]];
+                // Get root view of navigation controller
+                rootView = navigationController.viewControllers[0];
+            }
+
 			NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
 			QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)rootView;
 			[questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];

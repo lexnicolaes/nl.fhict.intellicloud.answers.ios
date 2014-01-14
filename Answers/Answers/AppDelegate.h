@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "QuestionsTableViewController.h"
+#import "AuthenticationManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
