@@ -54,6 +54,15 @@
     
     // Load questions for view
     //[self reload:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDefaultViewTitle) name:kLoggedInNotification object:nil];
+}
+
+
+- (void)setDefaultViewTitle
+{
+    // Set title
+    self.title = NSLocalizedString(@"Questions", nil);
 }
 
 /**

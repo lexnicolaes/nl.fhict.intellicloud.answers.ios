@@ -82,10 +82,6 @@
     _currentUserImageView.layer.borderColor = [UIColor colorWithWhite:1.0f alpha:0.55f].CGColor;
     _currentUserImageView.layer.borderWidth = 0.7f;
     
-    // Set name for for authenticated user
-    // todo: retrieve dynamically from AuthenticationManager or backend
-    _currentUserLabel.text = @"Steven Paul Jobs";
-    
     //Present LoginViewController if not logged in
     if (IS_IPAD)
     {
@@ -95,12 +91,16 @@
             [self.splitViewController presentViewController:vc animated:NO completion:nil];
         }
     }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUserInfo) name:kLoggedInNotification object:nil];
 }
 
 - (void)loadUserInfo
 {
     NSLog(@"Load user info");
+    
+    // Reset
+    
     
     [User getAuthorizedUserWithBlock:^(User *user, NSError *error)
     {
