@@ -11,7 +11,7 @@
 #import "WebserviceManager.h"
 #import "Answer.h"
 
-@interface AnswerDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface AnswerDetailViewController : UIViewController  <UISplitViewControllerDelegate>
 
 /**
  * @property sendAnswer
