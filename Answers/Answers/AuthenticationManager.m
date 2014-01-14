@@ -54,7 +54,14 @@
  */
 - (BOOL) checkAutentication
 {
-	return [_auth canAuthorize];
+    BOOL auth = [_auth canAuthorize];
+    
+    if(auth)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoggedInNotification object:self];
+    }
+    
+	return auth;
 }
 
 /**
@@ -218,21 +225,20 @@
 	{
 		// Authentication failed
         
-		//NSLog(@"Authentication error: %@", error);
+		NSLog(@"Authentication error: %@", error);
         
-//		NSData *responseData = [[error userInfo] objectForKey:@"data"];
-//        
-//		if ([responseData length] > 0)
-//		{
-//			// Log the body of the server's authentication failure response
-//			NSString *str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//			NSLog(@"%@", str);
-//		}
+		NSData *responseData = [[error userInfo] objectForKey:@"data"];
+        
+		if ([responseData length] > 0)
+		{
+			// Log the body of the server's authentication failure response
+			NSString *str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+			NSLog(@"%@", str);
+		}
         
 		self.auth = nil;
         
-//        [viewController dismissViewControllerAnimated:YES completion:nil];
-	}
+        [viewController dismissViewControllerAnimated:YES completion:nil];	}
 	else
 	{
 		// Authentication succeeded
@@ -250,7 +256,9 @@
          {
              [_lastVC dismissViewControllerAnimated:NO completion:nil];
          }];
-	}
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoggedInNotification object:self];
+    }
 }
 
 @end

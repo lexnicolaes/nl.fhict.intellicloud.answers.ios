@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "Question.h"
+#import "User.h"
 
 @interface MenuViewController ()
 
@@ -80,11 +81,6 @@
     _currentUserImageView.layer.cornerRadius = _currentUserImageView.frame.size.width / 2; // half of the width
     _currentUserImageView.layer.borderColor = [UIColor colorWithWhite:1.0f alpha:0.55f].CGColor;
     _currentUserImageView.layer.borderWidth = 0.7f;
-    [_currentUserImageView setImageWithURL:[NSURL URLWithString:@"http://guessthelighting.com/wp-content/uploads/2012/02/steve_jobs_albert-watson.jpg"] placeholderImage:[UIImage imageNamed:@"UserIcon"]];
-    
-    // Set name for for authenticated user
-    // todo: retrieve dynamically from AuthenticationManager or backend
-    _currentUserLabel.text = @"Steven Paul Jobs";
     
     //Present LoginViewController if not logged in
     if (![[AuthenticationManager sharedClient] checkAutentication])
@@ -94,6 +90,35 @@
             [self.splitViewController presentViewController:vc animated:NO completion:nil];
         }
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUserInfo) name:kLoggedInNotification object:nil];
+}
+
+- (void)loadUserInfo
+{
+    NSLog(@"Load user info");
+    
+    // Reset
+    
+    
+    [User getAuthorizedUserWithBlock:^(User *user, NSError *error)
+    {
+        if (!error)
+        {
+            [_currentUserImageView setImageWithURL:[NSURL URLWithString:user.avatarURL] placeholderImage:[UIImage imageNamed:@"UserIcon"]];
+            
+            // Set username label
+            NSString *authorText = NSLocalizedString(@"Unknown user", nil);
+            if (user.firstname != nil && user.lastname != nil)
+            {
+                // Prepare infix, add suffix space when we have a infix
+                NSString *infix = user.infix != nil ? [NSString stringWithFormat:@" %@ ", user.infix] : @" ";
+                authorText = [NSString stringWithFormat:@"%@%@%@", user.firstname, infix, user.lastname];
+            }
+            
+            _currentUserLabel.text = authorText;
+        }
+    }];
 }
 
 #pragma mark -

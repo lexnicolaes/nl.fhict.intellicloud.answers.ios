@@ -13,6 +13,8 @@
 #import "MainNavigationController.h"
 #import "Question.h"
 
+static NSString *const kLoggedInNotification = @"LoggedInNotification";
+
 static NSString *const kKeychainItemName = @"IntelliCloud OAuth2 Google Plus";
 
 static NSString *const kMyClientID = @"918910489517-v6j5fmrvi60sn3pog8dvejvsdm9rr7p7.apps.googleusercontent.com";

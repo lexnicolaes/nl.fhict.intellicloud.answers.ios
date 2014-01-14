@@ -8,6 +8,8 @@
 
 #import "User.h"
 
+#import "WebserviceManager.h"
+
 /**
  * Model representing a User retreived from the Webservice
  */
@@ -26,8 +28,7 @@
     }
     
     self.userID = [[attributes valueForKeyPath:@"Id"] integerValue];
-    self.username = [attributes valueForKey:@"Username"];
-    self.password = [attributes valueForKey:@"Password"];
+    self.avatarURL = ![[attributes valueForKey:@"Avatar"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"Avatar"] : nil;
     self.firstname = ![[attributes valueForKey:@"FirstName"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"FirstName"] : nil;
     self.infix = ![[attributes valueForKey:@"Infix"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"Infix"] : nil;
     self.lastname = ![[attributes valueForKey:@"LastName"] isKindOfClass:[NSNull class]] ? [attributes valueForKey:@"LastName"] : nil;
@@ -45,6 +46,26 @@
 }
 
 /**
+ * Retrieves the authorized user.
+ * @param attributes to be parsed
+ * @param attributes to be parsed
+ */
++ (NSURLSessionDataTask *)getAuthorizedUserWithBlock:(void (^)(User *user, NSError *error))block
+{
+    return [[WebserviceManager sharedClient] GET:@"UserService.svc/users"
+                                      parameters:nil
+                                         success:^(NSURLSessionDataTask __unused *task, id JSON)
+            {
+                if (block)
+                    block([[User alloc] initWithAttributes:JSON], nil);
+            } failure:^(NSURLSessionDataTask *task, NSError *error)
+            {
+                if (block)
+                    block(nil, error);
+            }];
+}
+
+/**
  * @brief NSCoding interface method for initializing an instance of this class.
  */
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -53,8 +74,7 @@
     if (self == [super init])
     {
         self.userID = [aDecoder decodeIntegerForKey:@"Id"];
-        self.username = [aDecoder decodeObjectForKey:@"Username"];
-        self.password = [aDecoder decodeObjectForKey:@"Password"];
+        self.avatarURL = [aDecoder decodeObjectForKey:@"Avatar"];
         self.firstname = [aDecoder decodeObjectForKey:@"FirstName"];
         self.infix = [aDecoder decodeObjectForKey:@"Infix"];
         self.lastname = [aDecoder decodeObjectForKey:@"LastName"];
@@ -74,8 +94,7 @@
 {
     // Encode the values using the coder
     [aCoder encodeInteger:self.userID forKey:@"Id"];
-    [aCoder encodeObject:self.username forKey:@"Username"];
-    [aCoder encodeObject:self.password forKey:@"Password"];
+    [aCoder encodeObject:self.avatarURL forKey:@"Avatar"];
     [aCoder encodeObject:self.firstname forKey:@"FirstName"];
     [aCoder encodeObject:self.infix forKey:@"Infix"];
     [aCoder encodeObject:self.lastname forKey:@"LastName"];
