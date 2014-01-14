@@ -31,16 +31,10 @@ typedef NS_ENUM(NSInteger, UserType)
 @property (nonatomic, assign) NSInteger userID;
 
 /**
-* @property username
-* @brief Gets the username of the user. The username is used when a user wishes to be authenticated.
-*/
-@property (nonatomic, strong) NSString * username;
-
-/**
-* @property password
-* @brief Gets the password of the user. The password is used when a user wishes to be authenticated.
-*/
-@property (nonatomic, strong) NSString * password;
+ * @property avatar url
+ * @brief Gets the URL of the avatar of the user.
+ */
+@property (nonatomic, strong) NSString * avatarURL;
 
 /**
  * @property firdtname
@@ -89,5 +83,12 @@ typedef NS_ENUM(NSInteger, UserType)
  * @param attributes to be parsed
  */
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;
+
+/**
+ * Retrieves the authorized user.
+ * @param attributes to be parsed
+ * @param attributes to be parsed
+ */
++ (NSURLSessionDataTask *)getAuthorizedUserWithBlock:(void (^)(User *user, NSError *error))block;
 
 @end
