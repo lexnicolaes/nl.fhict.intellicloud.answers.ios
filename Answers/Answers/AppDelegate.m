@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation AppDelegate
 
@@ -14,7 +16,30 @@
 {
     // Set application background fetch interval
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-
+	
+	// Override point for customization after application launch.
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+	    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+	    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+	    splitViewController.delegate = (id)navigationController.topViewController;
+	}
+    
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                [SVProgressHUD showErrorWithStatus:@"U bent niet verbonden met het internet!"];
+                break;
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];
+	
     return YES;
 }
 

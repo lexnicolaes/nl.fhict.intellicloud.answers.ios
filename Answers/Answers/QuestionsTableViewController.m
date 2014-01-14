@@ -7,6 +7,7 @@
 //
 
 #import "QuestionsTableViewController.h"
+#import "MenuViewController.h"
 
 @interface QuestionsTableViewController ()
 
@@ -23,7 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	
     // Set table seperator inset to line up with content text
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0.0f, 50.0f, 0.0f, 0.0f)];
     
@@ -42,10 +43,13 @@
     // Static height for tableviewcell, see storyboard
     self.tableView.rowHeight = QuestionTableCellHeight;
     
-    //Present LoginViewController if not logged in
-    if (![[AuthenticationManager sharedClient] checkAutentication])
+    if (IS_IPHONE)
     {
-        [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+        //Present LoginViewController if not logged in
+        if (![[AuthenticationManager sharedClient] checkAutentication])
+        {
+            [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+        }
     }
     
     // Load questions for view
@@ -188,10 +192,8 @@
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:110];
     
     // Set time label (static for now)
-    //NSLocale* currentLocale = [NSLocale currentLocale];
     TTTTimeIntervalFormatter *timeFormatter = [[TTTTimeIntervalFormatter alloc] init];
     timeLabel.text = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:question.creationTime];
-    NSLog(@"%@", question.creationTime);
     
     // Get icon imageview from storyboard
     //UIImageView *iconImageView = (UIImageView *)[cell.contentView viewWithTag:120];
@@ -205,6 +207,30 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	// Only used for iPad version
+    if (IS_IPAD)
+	{
+		// Get reference to answerDetailViewController
+		AnswerDetailViewController *answerDetailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"answerDetailViewController"];
+		
+		// Get reference to question
+		Question *selectedQuestion = (Question *)[_tableData objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+		answerDetailViewController.selectedQuestion = selectedQuestion;
+		
+		// Replace detail viewController
+		MainNavigationController *navController = [[MainNavigationController alloc] initWithRootViewController:answerDetailViewController];
+		
+		// Get array of viewControllers
+		NSArray * viewControllers = self.splitViewController.viewControllers;
+		
+		// Replace array with new navigationController object
+		NSArray * newViewControllers = [NSArray arrayWithObjects:[viewControllers objectAtIndex:0], navController, nil];
+		[self.splitViewController setViewControllers:newViewControllers];
+    }
+}
+
 /*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Static height for tableviewcell, see storyboard
@@ -216,10 +242,20 @@
 // Send the selected question to the QuestionDetailController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    QuestionDetailViewController *questionDetailController = segue.destinationViewController;
-    Question *selectedQuestion = (Question *)[_tableData objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-    questionDetailController.selectedQuestion = selectedQuestion;
+	// Only used for iPhone version
+	if(IS_IPHONE)
+	{
+		NSLog(@"%s", __PRETTY_FUNCTION__);
+		// Pass selectedQuestion to AnswerDetailViewController
+		AnswerDetailViewController *questionDetailController = segue.destinationViewController;
+		Question *selectedQuestion = (Question *)[_tableData objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+		questionDetailController.selectedQuestion = selectedQuestion;
+	}
+}
+
+- (void)reloadForFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+	
 }
 
 @end

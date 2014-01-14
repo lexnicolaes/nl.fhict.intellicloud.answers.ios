@@ -16,6 +16,7 @@
 
     // Load color category for global styling
     #import "UIColor+IntelliCloudStyle.h"
+    #import "Constants.h"
 
     // Load persistent store manager for global access
     #import "PersistentStoreManager.h"
