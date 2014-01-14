@@ -20,8 +20,8 @@
                                     <rect key="frame" x="32" y="4" width="256" height="192"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-WA-SKU">
-                                    <rect key="frame" x="32" y="155" width="256" height="194"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-WA-SKU">
+                                    <rect key="frame" x="32" y="155" width="256" height="177"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <string key="text">IntelliCloud is een systeem welke vragen van klanten beantwoord middels een automatisch systeem. Vragen die niet in het systeem staan worden beantwoord door medewerkers van het desbetreffende bedrijf. Volg ons ook op Facebook en Twitter.</string>

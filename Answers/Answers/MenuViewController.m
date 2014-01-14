@@ -191,36 +191,63 @@
 		// Hide the side menu
 		[self.sideMenuViewController hideMenuViewController];
 	}
-	
-	if(IS_IPAD)
+	else if(IS_IPAD)
 	{
 		// Deselect row
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 		
 		// Get data item for this row
-		/*NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+		NSDictionary *itemForRow = [[_menuItems objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 		
 		// Get navigation controller for sliding menu
-		//UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
+		UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
 		
-		// Get root view of navigation controller
-		//UIViewController *rootView = navigationController.viewControllers[0];
 		
-		NSLog(@"BLAAT: %@", itemForRow);
 		
-		NSLog(@"Setting predicate %@", (NSPredicate *)[itemForRow objectForKey:@"predicate"]);
 		
-		//QuestionsTableViewController *questionsTable = (QuestionsTableViewController *)self.detailViewController;
-		//[questionsTable filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
-		
-		[self.detailViewController filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
-		
-		// do we have an action? run it
-		
-		// set title, maybe check for @nav_title property first?
-		self.detailViewController.title = (NSString *)[itemForRow objectForKey:@"title"];*/
+		// press logout? do it
+		if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"About IntelliCloud", nil)])
+		{
+			// About
+			
+			// Get reference to answerDetailViewController
+			UIViewController *aboutViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"];
+			
+			// Replace detail viewController
+			MainNavigationController *navController = [[MainNavigationController alloc] initWithRootViewController:aboutViewController];
+			
+			// Get array of viewControllers
+			NSArray * viewControllers = self.splitViewController.viewControllers;
+			
+			// Replace array with new navigationController object
+			NSArray * newViewControllers = [NSArray arrayWithObjects:[viewControllers objectAtIndex:0], navController, nil];
+			[self.splitViewController setViewControllers:newViewControllers];
+		}
+		// press logout? do it
+		else if ([[itemForRow valueForKey:@"title"] isEqualToString:NSLocalizedString(@"Sign out", nil)])
+		{
+			// Login
+			
+			[[AuthenticationManager sharedClient] signOut];
+			[self.navigationController.splitViewController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"] animated:NO completion:nil];
+		}
+		// do we have a @predicate? set it
+		else
+		{
+			QuestionsTableViewController *questionsTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"questionsViewController"];
+			[questionsTableViewController filterTableWithPredicate:(NSPredicate *)[itemForRow objectForKey:@"predicate"]];
+			
+			questionsTableViewController.title = (NSString *)[itemForRow objectForKey:@"title"];
+			
+			[self.navigationController pushViewController:questionsTableViewController animated:YES];
+		}
 	}
 }
+
+/*- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+	return NO;
+}*/
 
 #pragma mark -
 #pragma mark UITableView Datasource
