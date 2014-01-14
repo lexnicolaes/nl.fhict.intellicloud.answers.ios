@@ -48,6 +48,7 @@
 		74D4773F183CE9B300D33FC5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D4773E183CE9B300D33FC5 /* XCTest.framework */; };
 		74D47740183CE9B300D33FC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D47725183CE9B300D33FC5 /* Foundation.framework */; };
 		74D47741183CE9B300D33FC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D47729183CE9B300D33FC5 /* UIKit.framework */; };
+		74ECAA50188561A8000307E2 /* UserSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ECAA4F188561A8000307E2 /* UserSource.m */; };
 		74F57E42183CEB810028C197 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E44183CEB810028C197 /* Localizable.strings */; };
 		74F57E47183CEBB50028C197 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F57E49183CEBB50028C197 /* iPhoneStoryboard.storyboard */; };
 		9FC8445E1195414B8753E2DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CF620837114A219F247EDB /* libPods.a */; };
@@ -140,6 +141,8 @@
 		74D4773D183CE9B300D33FC5 /* AnswersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnswersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D4773E183CE9B300D33FC5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		74D47746183CE9B300D33FC5 /* AnswersTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnswersTests-Info.plist"; sourceTree = "<group>"; };
+		74ECAA4E188561A8000307E2 /* UserSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSource.h; sourceTree = "<group>"; };
+		74ECAA4F188561A8000307E2 /* UserSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSource.m; sourceTree = "<group>"; };
 		74F57E43183CEB810028C197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74F57E46183CEB9F0028C197 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74F57E48183CEBB50028C197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -439,6 +442,8 @@
 				C6FFDBEB184F527C00349F3C /* Answer.m */,
 				C626ACB51856414800360C14 /* LanguageDefinition.h */,
 				C626ACB61856414800360C14 /* LanguageDefinition.m */,
+				74ECAA4E188561A8000307E2 /* UserSource.h */,
+				74ECAA4F188561A8000307E2 /* UserSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -685,6 +690,7 @@
 				C67E7A2C1850DD99006620A6 /* BaseTableViewController.m in Sources */,
 				C626ACB71856414800360C14 /* LanguageDefinition.m in Sources */,
 				257EE4671883E66700F23FB3 /* EmptyDetailViewController.m in Sources */,
+				74ECAA50188561A8000307E2 /* UserSource.m in Sources */,
 				DA140073184F6F1C00325D65 /* AnswerDetailViewController.m in Sources */,
 				74D47732183CE9B300D33FC5 /* main.m in Sources */,
 				C6CB6D79183E1B4300D34039 /* SourceDefinition.m in Sources */,
