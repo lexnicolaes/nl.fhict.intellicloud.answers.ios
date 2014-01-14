@@ -14,6 +14,8 @@
 #import "Source.h"
 #import "QuestionDetailViewController.h"
 #import "AuthenticationManager.h"
+#import <RESideMenu/UIViewController+RESideMenu.h>
+#import "MenuViewController.h"
 
 NS_ENUM(NSUInteger, webServiceDataState)
 {

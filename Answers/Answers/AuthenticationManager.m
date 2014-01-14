@@ -54,7 +54,14 @@
  */
 - (BOOL) checkAutentication
 {
-	return [_auth canAuthorize];
+    BOOL auth = [_auth canAuthorize];
+    
+    if(auth)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoggedInNotification object:self];
+    }
+    
+	return auth;
 }
 
 /**
@@ -231,8 +238,7 @@
         
 		self.auth = nil;
         
-        [viewController dismissViewControllerAnimated:YES completion:nil];
-	}
+        [viewController dismissViewControllerAnimated:YES completion:nil];	}
 	else
 	{
 		// Authentication succeeded
@@ -250,7 +256,9 @@
          {
              [_lastVC dismissViewControllerAnimated:NO completion:nil];
          }];
-	}
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoggedInNotification object:self];
+    }
 }
 
 @end
